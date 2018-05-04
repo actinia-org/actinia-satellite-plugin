@@ -6,17 +6,15 @@ import os
 from flask import jsonify, make_response
 import dateutil.parser as dtparser
 from datetime import timedelta
-
 from copy import deepcopy
 from flask_restful_swagger_2 import swagger, Schema
 from actinia_core.resources.common.response_models import  ProcessingResponseModel
-
 from actinia_core.resources.persistent_processing import PersistentProcessing
 from actinia_core.resources.resource_base import ResourceBase
 from actinia_core.resources.common.redis_interface import enqueue_job
 from actinia_core.resources.common.google_satellite_bigquery_interface import GoogleSatelliteBigQueryInterface
 from actinia_core.resources.common.sentinel_processing_library import Sentinel2Processing
-from actinia_core.resources.common.exceptions import AsyncProcessError, AsyncProcessTermination
+from actinia_core.resources.common.exceptions import AsyncProcessError
 
 __license__ = "GPLv3"
 __author__     = "Sören Gebbert"

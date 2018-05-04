@@ -5,7 +5,7 @@ Actinia Core
 """
 
 import os
-from .endpoints import create_endpoints
+from src.actinia_satellite_plugin.endpoints import create_endpoints
 from actinia_core.health_check import health_check
 from actinia_core.version import version
 from actinia_core.resources.common.app import flask_app

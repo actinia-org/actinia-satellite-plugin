@@ -31,8 +31,6 @@ class SatelliteSceneEntry(Schema):
         'sensing_time': {
             'type': 'string',
             'description': 'The sensing time of the scene',
-            'type': 'string',
-            'format': 'dateTime'
         },
         'cloud_cover': {
             'type': 'number',

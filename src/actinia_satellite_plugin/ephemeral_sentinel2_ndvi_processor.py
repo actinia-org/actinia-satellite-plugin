@@ -5,13 +5,10 @@ with export of required map layers.
 """
 import pickle
 import os
-import requests
-import shutil
 import tempfile
 from copy import deepcopy
 from flask import jsonify, make_response
-from flask_restful_swagger_2 import swagger, Schema
-
+from flask_restful_swagger_2 import swagger
 from actinia_core.resources.ephemeral_processing_with_export import EphemeralProcessingWithExport
 from actinia_core.resources.resource_base import ResourceBase
 from actinia_core.resources.common.google_satellite_bigquery_interface import GoogleSatelliteBigQueryInterface

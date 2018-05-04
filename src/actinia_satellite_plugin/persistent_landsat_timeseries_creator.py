@@ -7,7 +7,6 @@ import os
 from flask import jsonify, make_response
 import dateutil.parser as dtparser
 from datetime import timedelta
-
 from copy import deepcopy
 from flask_restful_swagger_2 import swagger, Schema
 from actinia_core.resources.common.response_models import  ProcessingResponseModel
