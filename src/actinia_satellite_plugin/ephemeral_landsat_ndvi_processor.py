@@ -18,6 +18,7 @@ from actinia_core.resources.common.redis_interface import enqueue_job
 from actinia_core.resources.common.exceptions import AsyncProcessError
 from actinia_core.resources.common.response_models import UnivarResultModel, ProcessingResponseModel
 from actinia_core.resources.common.landsat_processing_library import LandsatProcessing
+from actinia_core.resources.common.response_models import ProcessingErrorResponseModel
 
 __license__ = "GPLv3"
 __author__ = "Sören Gebbert"
@@ -106,7 +107,7 @@ class AsyncEphemeralLandsatProcessingResource(ResourceBase):
         self.response_model_class = LandsatNDVIResponseModel
 
     @swagger.doc({
-        'tags': ['satellite image algorithms'],
+        'tags': ['Satellite Image Algorithms'],
         'description': 'This resource performs the computation of the NDVI from an atmospherically '
                        'corrected Landsat scene located in the google cloud storage. '
                        'The processing is as follows: A user specific Landsat scene (LT4, LT5, LE7 and LC8) '
@@ -156,7 +157,7 @@ class AsyncEphemeralLandsatProcessingResource(ResourceBase):
             '400': {
                 'description': 'The error message and a detailed log why NDVI processing of '
                                'a Landsat scene did not succeeded',
-                'schema': ProcessingResponseModel
+                'schema': ProcessingErrorResponseModel
             }
         }
     })

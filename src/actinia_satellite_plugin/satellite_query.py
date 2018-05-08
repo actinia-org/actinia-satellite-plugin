@@ -110,7 +110,7 @@ class SatelliteSceneList(Schema):
     ]
 
 SCHEMA_LAND_DOC={
-    'tags': ['satellite query'],
+    'tags': ['Satellite Image Algorithms'],
     'description': 'Query the Google Landsat archives using time interval, lat/lon coordinates, '
                    'scene id, spacecraft id and cloud cover. '
                    'All scenes that are located within the time interval and that intersect '
@@ -189,7 +189,7 @@ SCHEMA_LAND_DOC={
 
 
 SCHEMA_SENT_DOC={
-    'tags': ['satellite query'],
+    'tags': ['Satellite Image Algorithms'],
     'description': 'Query the Google Sentinel2 archives using time interval, lat/lon coordinates, '
                    'scene id and cloud cover. '
                    'All scenes that are located within the time interval and that intersect '
@@ -334,6 +334,7 @@ class LandsatQuery(SatelliteQuery):
     """
     @swagger.doc(deepcopy(SCHEMA_LAND_DOC))
     def get(self):
+        """Query the Google Landsat archives using time interval, lat/lon coordinates, scene id, spacecraft id and cloud cover."""
         return self._get("landsat")
 
 
@@ -342,5 +343,6 @@ class Sentinel2Query(SatelliteQuery):
     """
     @swagger.doc(deepcopy(SCHEMA_SENT_DOC))
     def get(self):
+        """Query the Google Sentinel2 archives using time interval, lat/lon coordinates, scene id and cloud cover."""
         return self._get("sentinel2")
 

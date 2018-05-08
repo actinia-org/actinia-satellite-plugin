@@ -19,6 +19,7 @@ from actinia_core.resources.common.exceptions import AsyncProcessError
 from actinia_core.resources.common.response_models import UnivarResultModel, ProcessingResponseModel
 from actinia_core.resources.common.app import auth
 from actinia_core.resources.common.logging_interface import log_api_call
+from actinia_core.resources.common.response_models import ProcessingErrorResponseModel
 
 __license__ = "GPLv3"
 __author__     = "Sören Gebbert"
@@ -433,7 +434,7 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
 
 
 SWAGGER_DOC = {
-    'tags': ['satellite image algorithms'],
+    'tags': ['Satellite Image Algorithms'],
     'description': 'NDVI computation of a Sentinel 2A '
                    'scene that is downloaded from the google cloud storage. '
                    'The processing is as follows: A user specific Sentinel 2A scene (Bands 04 and 08)'
@@ -462,7 +463,7 @@ SWAGGER_DOC = {
         '400': {
             'description': 'The error message and a detailed log why NDVI processing of '
                            'a sentinel2 scene did not succeeded',
-            'schema':ProcessingResponseModel
+            'schema':ProcessingErrorResponseModel
         }
     }
 }
@@ -706,7 +707,7 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
 
         # Run the selected modules
         process_list = self._validate_process_chain(process_chain=render_commands,
-                                                     skip_permission_check=True)
+                                                    skip_permission_check=True)
         self._execute_process_list(process_list)
 
         # Attach the png preview image to the resource URL list

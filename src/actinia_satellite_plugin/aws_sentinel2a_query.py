@@ -3,17 +3,15 @@
 """
 
 from actinia_core.resources.common.config import global_config
-from actinia_core.resources.common.google_satellite_bigquery_interface import GoogleSatelliteBigQueryInterface
 from flask import jsonify, make_response
 from actinia_core.resources.common.app import auth
 from actinia_core.resources.common.logging_interface import log_api_call
-from flask_restful import Resource
 from actinia_core.resources.common.response_models import SimpleResponseModel
 from actinia_core.resources.common.aws_sentinel_interface import AWSSentinel2AInterface
 from actinia_core.resources.resource_base import ResourceBase
 from flask_restful_swagger_2 import swagger, Schema
 from copy import deepcopy
-from flask_restful import reqparse
+
 
 __license__ = "GPLv3"
 __author__ = "Sören Gebbert"
@@ -182,7 +180,7 @@ class Sentinel2ASceneListModel(Schema):
 
 
 SCHEMA_DOC = {
-    'tags': ['space-time raster dataset algorithms'],
+    'tags': ['Satellite Image Algorithms'],
     'description': 'Generate the download urls for a list of sentinel2A scenes and band numbers. '
                    'Minimum required user role: user.',
     'consumes': ['application/json'],
@@ -216,6 +214,7 @@ class AWSSentinel2ADownloadLinkQuery(ResourceBase):
 
     @swagger.doc(deepcopy(SCHEMA_DOC))
     def post(self):
+        """Generate the download urls for a list of sentinel2A scenes and band numbers."""
 
         try:
             iface = AWSSentinel2AInterface(global_config)

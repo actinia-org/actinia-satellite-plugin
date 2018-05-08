@@ -8,7 +8,7 @@ import dateutil.parser as dtparser
 from datetime import timedelta
 from copy import deepcopy
 from flask_restful_swagger_2 import swagger, Schema
-from actinia_core.resources.common.response_models import  ProcessingResponseModel
+from actinia_core.resources.common.response_models import  ProcessingResponseModel, ProcessingErrorResponseModel
 from actinia_core.resources.persistent_processing import PersistentProcessing
 from actinia_core.resources.resource_base import ResourceBase
 from actinia_core.resources.common.redis_interface import enqueue_job
@@ -56,17 +56,17 @@ class Sentinel2ASceneListModel(Schema):
 
 
 SCHEMA_DOC={
-    'tags': ['space-time raster dataset algorithms'],
+    'tags': ['Satellite Image Algorithms'],
     'description': 'Download and import an arbitrary number of Sentinel2A Scenes into a new mapset '
-                   'of a persistent location and register them in band specific space-time raster datasets. '
+                   'of a location in a persistent user database and register them in band '
+                   'specific space-time raster datasets (STRDS). '
                    'The location name is part of the path and must exist. The mapset will '
-                   'be created while importing and should not exist in the location. The names of the'
+                   'be created while importing and should not already exist in the location. The names of the'
                    'Sentinel 2A scenes and the band names that should be downloaded must be specified '
                    'in the HTTP body as application/json content. In addition, the names of the '
-                   'space-time raster datasets (STRDS) that should manage the sentinel scenes '
+                   'STRDS that should manage the sentinel scenes '
                    'must be provided in the application/json content. For each band a separate '
-                   'STRD name must be provided.'
-                   ''
+                   'STRDS name must be provided.'
                    'This call is performed asynchronously. The provided resource URL must be pulled '
                    'to receive the status of the import. The data is available in the provided '
                    'location/mapset, after the download and import finished. Minimum required user role: user.',
@@ -102,7 +102,7 @@ SCHEMA_DOC={
         '400': {
             'description':'The error message and a detailed log why Sentinel '
                           '2A time series import did not succeeded',
-            'schema':ProcessingResponseModel
+            'schema':ProcessingErrorResponseModel
         }
     }
  }
