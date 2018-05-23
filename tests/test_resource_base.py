@@ -4,7 +4,7 @@ import os
 import signal
 import time
 from flask_restful import Api
-from actinia_core.testsuite import ActiniaTestCaseBase
+from actinia_core.testsuite import ActiniaTestCaseBase, URL_PREFIX
 from actinia_core.resources.common.config import global_config
 from actinia_core.resources.common.app import flask_app, flask_api
 from actinia_satellite_plugin.endpoints import create_endpoints

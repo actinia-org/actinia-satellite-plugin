@@ -4,9 +4,9 @@ from pprint import pprint
 from flask.json import loads as json_load
 from flask.json import dumps as json_dump
 try:
-    from .test_resource_base import ActiniaResourceTestCaseBase
+    from .test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 except:
-    from test_resource_base import ActiniaResourceTestCaseBase
+    from test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 
 
 __license__ = "GPLv3"
@@ -30,7 +30,7 @@ SCENES_ERROR = {"product_ids":["S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_201
 class AWSSentinelServiceTestCase(ActiniaResourceTestCaseBase):
 
     def test_1(self):
-        rv = self.server.post('/sentinel2a_aws_query',
+        rv = self.server.post(URL_PREFIX + '/sentinel2a_aws_query',
                               headers=self.user_auth_header,
                               data=json_dump(SCENES),
                               content_type="application/json")
@@ -43,7 +43,7 @@ class AWSSentinelServiceTestCase(ActiniaResourceTestCaseBase):
         self.assertEqual(rv.mimetype, "application/json", "Wrong mimetype %s"%rv.mimetype)
 
     def test_error_1(self):
-        rv = self.server.post('/sentinel2a_aws_query',
+        rv = self.server.post(URL_PREFIX + '/sentinel2a_aws_query',
                               headers=self.user_auth_header,
                               data=json_dump(SCENES_ERROR),
                               content_type="application/json")

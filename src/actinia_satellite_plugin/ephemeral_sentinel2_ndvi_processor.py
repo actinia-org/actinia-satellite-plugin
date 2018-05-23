@@ -620,6 +620,7 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
             os.chdir(self.temp_grass_data_base)
 
             executable_params = list()
+            executable_params.append(self.config.GRASS_GIS_START_SCRIPT)
             executable_params.append("-e")
             executable_params.append("-c")
             executable_params.append(geofile)
@@ -630,10 +631,10 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
             self._update_num_of_steps(1)
 
             p = Process(exec_type="exec",
-                             executable=self.config.GRASS_GIS_START_SCRIPT,
-                             executable_params=executable_params)
+                        executable="python2",
+                        executable_params=executable_params)
 
-            # Create the GRASS location, this will create the location adn mapset paths
+            # Create the GRASS location, this will create the location and mapset paths
             self._run_process(p)
         except Exception as e:
             raise AsyncProcessError("Unable to create a temporary GIS database and location at <%s>"

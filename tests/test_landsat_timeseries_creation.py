@@ -4,9 +4,9 @@ from pprint import pprint
 from flask.json import loads as json_load
 from flask.json import dumps as json_dump
 try:
-    from .test_resource_base import ActiniaResourceTestCaseBase
+    from .test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 except:
-    from test_resource_base import ActiniaResourceTestCaseBase
+    from test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 
 
 __license__ = "GPLv3"
@@ -42,7 +42,7 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
 
         """
 
-        rv = self.server.get('/locations/LL/mapsets',
+        rv = self.server.get(URL_PREFIX + '/locations/LL/mapsets',
                              headers=self.admin_auth_header)
         pprint(json_load(rv.data))
         self.assertEqual(rv.status_code, 200, "HTML status code is wrong %i"%rv.status_code)
@@ -53,11 +53,11 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         for mapset in test_mapsets:
             if mapset in mapsets:
                 # Unlock mapset for deletion
-                rv = self.server.post('/locations/LL/mapsets/%s' % mapset,
+                rv = self.server.post(URL_PREFIX + '/locations/LL/mapsets/%s' % mapset,
                                       headers=self.admin_auth_header)
                 pprint(json_load(rv.data))
                 # Delete the mapset if it already exists
-                rv = self.server.delete('/locations/LL/mapsets/%s' % mapset,
+                rv = self.server.delete(URL_PREFIX + '/locations/LL/mapsets/%s' % mapset,
                                         headers=self.admin_auth_header)
                 pprint(json_load(rv.data))
                 self.assertEqual(rv.status_code, 200, "HTML status code is wrong %i"%rv.status_code)
@@ -68,7 +68,7 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.check_remove_test_mapsets()
 
         ############################################################################
-        rv = self.server.post('/locations/LL/mapsets/A/landsat_import',
+        rv = self.server.post(URL_PREFIX + '/locations/LL/mapsets/A/landsat_import',
                               headers=self.admin_auth_header,
                               data=json_dump(SCENE_IDS),
                               content_type="application/json")
@@ -76,7 +76,7 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         pprint(json_load(rv.data))
         self.waitAsyncStatusAssertHTTP(rv, headers=self.admin_auth_header)
 
-        rv = self.server.get('/locations/LL/mapsets/A/strds',
+        rv = self.server.get(URL_PREFIX + '/locations/LL/mapsets/A/strds',
                              headers=self.admin_auth_header)
         pprint(json_load(rv.data))
         self.assertEqual(rv.status_code, 200, "HTML status code is wrong %i"%rv.status_code)
@@ -96,7 +96,7 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.check_remove_test_mapsets()
 
         ############################################################################
-        rv = self.server.post('/locations/LL/mapsets/A/landsat_import',
+        rv = self.server.post(URL_PREFIX + '/locations/LL/mapsets/A/landsat_import',
                               headers=self.admin_auth_header,
                               data=json_dump(WRONG_SCENE_IDS),
                               content_type="application/json")
@@ -109,7 +109,7 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
     def test_1_error_mapset_exists(self):
         """PERMANENT mapset exists. hence an error message is expected
         """
-        rv = self.server.post('/locations/LL/mapsets/PERMANENT/landsat_import',
+        rv = self.server.post(URL_PREFIX + '/locations/LL/mapsets/PERMANENT/landsat_import',
                               headers=self.admin_auth_header,
                               data=json_dump(SCENE_IDS),
                               content_type="application/json")
