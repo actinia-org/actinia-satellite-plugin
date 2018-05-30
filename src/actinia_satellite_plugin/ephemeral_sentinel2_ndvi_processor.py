@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Asynchronous computation in specific temporary generated mapsets
-with export of required map layers.
-"""
 import pickle
 import os
 import tempfile
@@ -719,7 +715,7 @@ class AsyncEphemeralSentinel2ProcessingResourceGCS(ResourceBase):
 
     @swagger.doc(deepcopy(SWAGGER_DOC))
     def post(self, product_id):
-        """NDVI computation of an arbitrary Sentinel 2A scene string the result in Google Cloud Storage
+        """NDVI computation of an arbitrary Sentinel 2A scene. The results are stored in the Google Cloud Storage.
         """
         rdc = self.preprocess(has_json=False, location_name="sentinel2")
         rdc.set_user_data(product_id)
