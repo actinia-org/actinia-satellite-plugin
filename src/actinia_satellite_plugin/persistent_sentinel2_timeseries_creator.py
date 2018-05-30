@@ -57,9 +57,9 @@ class Sentinel2ASceneListModel(Schema):
 
 SCHEMA_DOC={
     'tags': ['Satellite Image Algorithms'],
-    'description': 'Download and import an arbitrary number of Sentinel2A Scenes into a new mapset '
-                   'of a location in a persistent user database and register them in band '
-                   'specific space-time raster datasets (STRDS). '
+    'description': 'Download and import Sentinel2A scenes into a new mapset and create a space-time raster dataset '
+                   'for each imported band. '
+                   'The resulting data will be located in a persistent user database. '
                    'The location name is part of the path and must exist. The mapset will '
                    'be created while importing and should not already exist in the location. The names of the'
                    'Sentinel 2A scenes and the band names that should be downloaded must be specified '
@@ -115,7 +115,7 @@ class AsyncSentinel2TimeSeriesCreatorResource(ResourceBase):
 
     @swagger.doc(deepcopy(SCHEMA_DOC))
     def post(self, location_name, mapset_name):
-        """Download and import sentinel scenes into a new mapset and create a space time dataset for each imported band.
+        """Download and import Sentinel2A scenes into a new mapset and create a space-time raster dataset for each imported band.
 
         Args:
             location_name (str): The name of the location

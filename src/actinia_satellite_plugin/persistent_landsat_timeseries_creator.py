@@ -61,9 +61,9 @@ class LandsatSceneListModel(Schema):
 
 SCHEMA_DOC={
     'tags': ['Satellite Image Algorithms'],
-    'description': 'Download and import an arbitrary number of Landsat Scenes into a new mapset '
-                   'of a location in a persistent user database and register them in band '
-                   'specific space-time raster datasets (STRDS). '
+    'description': 'Download and import Landsat scenes into a new mapset and create a space-time raster dataset '
+                   'for each imported band. '
+                   'The resulting data will be located in a persistent user database. '
                    'The location name is part of the path and must exist. The mapset will '
                    'be created while importing and should not already exist in the location. The names of the'
                    'Landsat scenes that should be downloaded must be specified '
