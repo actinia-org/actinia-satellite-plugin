@@ -689,7 +689,7 @@ def landsat_scene_id_to_google_url(landsat_scene_id, suffix):
 class AsyncEphemeralLandsatProcessingResource(ResourceBase):
     """
     This class represents a resource that runs asynchronous processing tasks
-    to download and process Landsdat TM satellite images in an ephemeral GRASS location
+    to download and process Landsat TM satellite images in an ephemeral GRASS location
     """
 
     decorators = [log_api_call, auth.login_required]

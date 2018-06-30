@@ -20,7 +20,7 @@ __maintainer__ = "Sören Gebbert"
 __email__ = "soerengebbert@googlemail.com"
 
 
-class BandInformationEnty(Schema):
+class BandInformationEntry(Schema):
     type = 'object'
     properties = {
         'file_name': {
@@ -46,18 +46,18 @@ class BandInformationEnty(Schema):
 class Sentinel2ATileEntry(Schema):
     type = 'object'
     properties = {
-        'B01': BandInformationEnty,
-        'B02': BandInformationEnty,
-        'B03': BandInformationEnty,
-        'B04': BandInformationEnty,
-        'B05': BandInformationEnty,
-        'B06': BandInformationEnty,
-        'B07': BandInformationEnty,
-        'B08': BandInformationEnty,
-        'B09': BandInformationEnty,
-        'B10': BandInformationEnty,
-        'B11': BandInformationEnty,
-        'B12': BandInformationEnty,
+        'B01': BandInformationEntry,
+        'B02': BandInformationEntry,
+        'B03': BandInformationEntry,
+        'B04': BandInformationEntry,
+        'B05': BandInformationEntry,
+        'B06': BandInformationEntry,
+        'B07': BandInformationEntry,
+        'B08': BandInformationEntry,
+        'B09': BandInformationEntry,
+        'B10': BandInformationEntry,
+        'B11': BandInformationEntry,
+        'B12': BandInformationEntry,
         'info': {
             'type': 'string',
             'description': 'The url to Sentinel2A scene information'
