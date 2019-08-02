@@ -2,8 +2,8 @@
 Actinia Satellite Plugin
 ========================
 
-This actinia plugin is deigned for efficient satellite data handling, especially Landast and Sentinel2A scenes.
-It implements endpoints for on-the-fly NDVI computation and time series import for Landsat and Sentinel2
+This actinia plugin is designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes.
+It implements endpoints for on-the-fly NDVI computation and time series import for Landsat and Sentinel-2
 scenes in the actinia database.
 
 Note:
@@ -12,7 +12,7 @@ Note:
     processing of geographical data that uses GRASS GIS for computational tasks.
 
     The Actinia service consists of the *Actinia Core* that provides the basic but sophisticated processing service
-    and *Actinia plugins* that provide problem specific services like Sentinel 2A and Landsat NDVI computation,
+    and *Actinia plugins* that provide problem specific services like Sentinel-2 and Landsat NDVI computation,
     spatio-temporal statistical analysis and many more.
 
     [1] https://github.com/mundialis/actinia_core
@@ -23,8 +23,8 @@ Installation
 
 The actinia plugin must be installed in the same environment as actinia core.
 Actinia core must be configured to load the installed plugin. When the plugin is
-loaded and all plugin endpoints are available in actinia.
-The interface description of actinia will be extended with the endpoints of the plugins.
+loaded and all plugin endpoints are available in actinia, the interface description
+of actinia will be extended with the endpoints of the plugins.
 
     .. code-block:: bash
 
