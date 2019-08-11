@@ -824,7 +824,7 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
             self._update_num_of_steps(1)
 
             p = Process(exec_type="exec",
-                        executable="python2",
+                        executable="python3",
                         executable_params=executable_params)
 
             # Create the GRASS location, this will create the location and mapset paths
