@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 # needed to be set as ENVs before:
 #env_release_url
