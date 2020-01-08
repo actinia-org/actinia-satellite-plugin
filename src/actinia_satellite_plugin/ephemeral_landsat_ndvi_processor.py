@@ -305,9 +305,9 @@ class LandsatNDVIResponseModel(ProcessingResponseModel):
           "stdout": ""
         },
         {
-          "executable": "python2",
+          "executable": "python3",
           "parameter": [
-            "/usr/local/bin/grass75",
+            "/usr/local/bin/grass79",
             "-e",
             "-c",
             "/actinia/workspace/download_cache/superadmin/LC80440342016259LGN00_B1.TIF",
@@ -706,7 +706,7 @@ class AsyncEphemeralLandsatProcessingResource(ResourceBase):
                        'will be download and imported into an ephemeral database. Then atmospheric correction '
                        'will be performed, with either TOAR or DOS4, depending on the users choice. The user specific '
                        'vegetation index will be computed based on the TOAR or DOS4 data. The result of '
-                       'the computation is available as gzipped geotiff file. In addition, '
+                       'the computation is available as gzipped Geotiff file. In addition, '
                        'the univariate statistic will be computed '
                        'as well as a preview image including a legend. Minimum required user role: user.',
         'parameters': [
