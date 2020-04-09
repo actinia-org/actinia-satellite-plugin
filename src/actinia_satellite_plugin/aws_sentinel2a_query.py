@@ -160,14 +160,14 @@ class Sentinel2ASceneListModel(Schema):
         'bands': {
             'type': 'array',
             'items': {'type': 'string'},
-            'description': 'A list of band names that should be downloaded and imported for each Sentinel 2A scene.'
+            'description': 'A list of band names that should be downloaded and imported for each Sentinel-2 scene.'
                            'Available are the following band names: "B01", "B02", "B03", "B04", "B05", "B06", "B07",'
                            '"B08", "B8A", "B09" "B10", "B11", "B12"'
         },
         'product_ids': {
             'type': 'array',
             'items': {'type': 'string'},
-            'description': 'A list of Sentinel 2A scene names of which the tile downlad urls '
+            'description': 'A list of Sentinel-2 scene names of which the tile download urls '
                            'and metadata infor urls should be provided.'
         }
     }
@@ -187,7 +187,7 @@ SCHEMA_DOC = {
     'parameters': [
         {
             'name': 'scenes',
-            'description': 'The list of Sentinel 2A scenes and the band names',
+            'description': 'The list of Sentinel-2 scenes and the band names',
             'required': True,
             'in': 'body',
             'schema': Sentinel2ASceneListModel
@@ -195,12 +195,12 @@ SCHEMA_DOC = {
     ],
     'responses': {
         '200': {
-            'description': 'The result of the Sentinel 2A time series import',
+            'description': 'The result of the Sentinel-2 time series import',
             'schema': Sentinel2ASceneList
         },
         '400': {
             'description': 'The error message and a detailed log why Sentinel '
-                           '2A scene downlad url creation did not succeeded',
+                           '2A scene download url creation did not succeeded',
             'schema': SimpleResponseModel
         }
     }
