@@ -31,7 +31,7 @@ class Sentinel2ASceneListModel(Schema):
         'bands': {
             'type': 'array',
             'items': {'type':'string'},
-            'description': 'A list of band names that should be downloaded and imported for each Sentinel 2A scene.'
+            'description': 'A list of band names that should be downloaded and imported for each Sentinel-2 scene.'
                            'Available are the following band names: "B01", "B02", "B03", "B04", "B05", "B06", "B07",'
                            '"B08", "B8A", "B09" "B10", "B11", "B12"'
         },
@@ -43,7 +43,7 @@ class Sentinel2ASceneListModel(Schema):
         'product_ids': {
             'type': 'array',
             'items': {'type':'string'},
-            'description': 'A list of Sentinel 2A scene names that should be downloaded and imported'
+            'description': 'A list of Sentinel-2 scene names that should be downloaded and imported'
         }
     }
     example = {"bands":["B04","B08"],
@@ -62,7 +62,7 @@ SCHEMA_DOC={
                    'The resulting data will be located in a persistent user database. '
                    'The location name is part of the path and must exist. The mapset will '
                    'be created while importing and should not already exist in the location. The names of the'
-                   'Sentinel 2A scenes and the band names that should be downloaded must be specified '
+                   'Sentinel-2 scenes and the band names that should be downloaded must be specified '
                    'in the HTTP body as application/json content. In addition, the names of the '
                    'STRDS that should manage the sentinel scenes '
                    'must be provided in the application/json content. For each band a separate '
@@ -88,7 +88,7 @@ SCHEMA_DOC={
         },
         {
             'name': 'tiles',
-            'description': 'The list of Sentinel 2A scenes, the band names and the target STRDS names',
+            'description': 'The list of Sentinel-2 scenes, the band names and the target STRDS names',
             'required': True,
             'in': 'body',
             'schema': Sentinel2ASceneListModel
@@ -96,7 +96,7 @@ SCHEMA_DOC={
     ],
     'responses': {
         '200': {
-            'description': 'The result of the Sentinel 2A time series import',
+            'description': 'The result of the Sentinel-2 time series import',
             'schema':ProcessingResponseModel
         },
         '400': {
@@ -223,13 +223,13 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
         try:
             self.query_result = self.query_interface.get_sentinel_urls(self.product_ids, self.required_bands)
         except Exception as e:
-            raise AsyncProcessError("Error in querying Sentinel 2A product <%s> "
-                                    "in Google BigQuery Sentinel 2A database. "
+            raise AsyncProcessError("Error in querying Sentinel-2 product <%s> "
+                                    "in Google BigQuery Sentinel-2 database. "
                                     "Error: %s"%(self.product_ids, str(e)))
 
         if not self.query_result:
-            raise AsyncProcessError("Unable to find Sentinel 2A product <%s> "
-                                    "in Google BigQuery Sentinel 2A database"%self.product_ids)
+            raise AsyncProcessError("Unable to find Sentinel-2 product <%s> "
+                                    "in Google BigQuery Sentinel-2 database"%self.product_ids)
 
     def _import_sentinel2_scenes(self):
         """Import all found Sentinel2 scenes with their bands and create the space time raster datasets

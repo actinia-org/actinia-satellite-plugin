@@ -629,8 +629,8 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
 
 SWAGGER_DOC = {
     'tags': ['Satellite Image Algorithms'],
-    'description': 'NDVI computation of an arbitrary Sentinel 2A scene.'
-                   'The processing is as follows: A user specific Sentinel 2A scene (Bands 04 and 08)'
+    'description': 'NDVI computation of an arbitrary Sentinel-2 scene.'
+                   'The processing is as follows: A user specific Sentinel-2 scene (Bands 04 and 08)'
                    'will be download and imported into an ephemeral database.. '
                    'The NDVI will be computed via r.mapcalc. '
                    'The result of the computation is available as gzipped geotiff file. In addition, '
@@ -679,7 +679,7 @@ def extract_sensor_id_from_scene_id(scene_id):
 class AsyncEphemeralSentinel2ProcessingResource(ResourceBase):
     """
     This class represents a resource that runs asynchronous processing tasks
-    to download and process Sentinel 2A satellite images in an ephemeral GRASS location
+    to download and process Sentinel-2 satellite images in an ephemeral GRASS location
     and stores the result in a network storage like GlusterFS or NFS
     """
     decorators = [log_api_call, auth.login_required]
@@ -690,7 +690,7 @@ class AsyncEphemeralSentinel2ProcessingResource(ResourceBase):
 
     @swagger.doc(deepcopy(SWAGGER_DOC))
     def post(self, product_id):
-        """NDVI computation of an arbitrary Sentinel 2A scene.
+        """NDVI computation of an arbitrary Sentinel-2 scene.
         """
 
         rdc = self.preprocess(has_json=False, location_name="sentinel2")
@@ -704,7 +704,7 @@ class AsyncEphemeralSentinel2ProcessingResource(ResourceBase):
 class AsyncEphemeralSentinel2ProcessingResourceGCS(ResourceBase):
     """
     This class represents a resource that runs asynchronous processing tasks
-    to download and process Sentinel 2A satellite images in an ephemeral GRASS location
+    to download and process Sentinel-2 satellite images in an ephemeral GRASS location
     and uploads the result to a google cloud storage bucket.
     """
     decorators = [log_api_call, auth.login_required]
@@ -715,7 +715,7 @@ class AsyncEphemeralSentinel2ProcessingResourceGCS(ResourceBase):
 
     @swagger.doc(deepcopy(SWAGGER_DOC))
     def post(self, product_id):
-        """NDVI computation of an arbitrary Sentinel 2A scene. The results are stored in the Google Cloud Storage.
+        """NDVI computation of an arbitrary Sentinel-2 scene. The results are stored in the Google Cloud Storage.
         """
         rdc = self.preprocess(has_json=False, location_name="sentinel2")
         rdc.set_user_data(product_id)
@@ -754,7 +754,7 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
                                                    # and preview image created
         self.module_results = []                   # A list of r.univar output classes for each vegetation index
         self.response_model_class = SentinelNDVIResponseModel   # The class that is used to create the response
-        self.required_bands = ["B08", "B04"]       # The Sentinel 2A bands that are required for NDVI processing
+        self.required_bands = ["B08", "B04"]       # The Sentinel-2 bands that are required for NDVI processing
         self.query_result = None
 
     def _prepare_sentinel2_download(self):
@@ -785,13 +785,13 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         try:
             self.query_result = self.query_interface.get_sentinel_urls([self.product_id,], self.required_bands)
         except Exception as e:
-            raise AsyncProcessError("Error in querying Sentinel 2A product <%s> "
-                                    "in Google BigQuery Sentinel 2A database. "
+            raise AsyncProcessError("Error in querying Sentinel-2 product <%s> "
+                                    "in Google BigQuery Sentinel-2 database. "
                                     "Error: %s"%(self.product_id, str(e)))
 
         if not self.query_result:
-            raise AsyncProcessError("Unable to find Sentinel 2A product <%s> "
-                                    "in Google BigQuery Sentinel 2A database"%self.product_id)
+            raise AsyncProcessError("Unable to find Sentinel-2 product <%s> "
+                                    "in Google BigQuery Sentinel-2 database"%self.product_id)
 
     def _create_temp_database(self, mapsets=[]):
         """Create a temporary gis database and location with a PERMANENT mapset for processing
