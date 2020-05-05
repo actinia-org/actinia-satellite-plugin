@@ -11,7 +11,7 @@ from flask_restful import reqparse
 from actinia_core.resources.common.config import global_config
 from actinia_core.resources.common.google_satellite_bigquery_interface import GoogleSatelliteBigQueryInterface
 from actinia_core.resources.common.app import auth
-from actinia_core.resources.common.logging_interface import log_api_call
+from actinia_core.resources.common.api_logger import log_api_call
 from actinia_core.resources.common.response_models import SimpleResponseModel
 
 __license__ = "GPLv3"
@@ -345,4 +345,3 @@ class Sentinel2Query(SatelliteQuery):
     def get(self):
         """Query the Google Sentinel2 archives using time interval, lat/lon coordinates, scene id and cloud cover."""
         return self._get("sentinel2")
-

@@ -14,7 +14,7 @@ from actinia_core.resources.common.process_object import Process
 from actinia_core.resources.common.exceptions import AsyncProcessError
 from actinia_core.resources.common.response_models import UnivarResultModel, ProcessingResponseModel
 from actinia_core.resources.common.app import auth
-from actinia_core.resources.common.logging_interface import log_api_call
+from actinia_core.resources.common.api_logger import log_api_call
 from actinia_core.resources.common.response_models import ProcessingErrorResponseModel
 
 __license__ = "GPLv3"

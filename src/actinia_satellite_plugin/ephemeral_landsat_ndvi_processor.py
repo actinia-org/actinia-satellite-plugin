@@ -6,7 +6,7 @@ from copy import deepcopy
 from flask import jsonify, make_response
 from actinia_core.resources.common.process_object import Process
 from actinia_core.resources.common.app import auth
-from actinia_core.resources.common.logging_interface import log_api_call
+from actinia_core.resources.common.api_logger import log_api_call
 from flask_restful_swagger_2 import swagger
 from actinia_core.resources.resource_base import ResourceBase
 from actinia_core.resources.ephemeral_processing_with_export import EphemeralProcessingWithExport
