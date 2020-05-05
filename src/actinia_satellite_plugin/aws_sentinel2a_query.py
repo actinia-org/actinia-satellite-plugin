@@ -5,7 +5,7 @@
 from actinia_core.resources.common.config import global_config
 from flask import jsonify, make_response
 from actinia_core.resources.common.app import auth
-from actinia_core.resources.common.logging_interface import log_api_call
+from actinia_core.resources.common.api_logger import log_api_call
 from actinia_core.resources.common.response_models import SimpleResponseModel
 from actinia_core.resources.common.aws_sentinel_interface import AWSSentinel2AInterface
 from actinia_core.resources.resource_base import ResourceBase
