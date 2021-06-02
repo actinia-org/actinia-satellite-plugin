@@ -8,11 +8,11 @@ from flask_restful import Resource
 from flask_restful_swagger_2 import swagger, Schema
 from copy import deepcopy
 from flask_restful import reqparse
-from actinia_core.resources.common.config import global_config
-from actinia_core.resources.common.google_satellite_bigquery_interface import GoogleSatelliteBigQueryInterface
-from actinia_core.resources.common.app import auth
-from actinia_core.resources.common.api_logger import log_api_call
-from actinia_core.resources.common.response_models import SimpleResponseModel
+from actinia_core.core.common.config import global_config
+from actinia_core.core.common.google_satellite_bigquery_interface import GoogleSatelliteBigQueryInterface
+from actinia_core.core.common.app import auth
+from actinia_core.core.common.api_logger import log_api_call
+from actinia_core.models.response_models import SimpleResponseModel
 
 __license__ = "GPLv3"
 __author__     = "Sören Gebbert"
