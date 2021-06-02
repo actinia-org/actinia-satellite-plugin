@@ -12,9 +12,9 @@ from actinia_core.rest.resource_base import ResourceBase
 from actinia_core.rest.ephemeral_processing_with_export import EphemeralProcessingWithExport
 from actinia_core.core.common.redis_interface import enqueue_job
 from actinia_core.core.common.exceptions import AsyncProcessError
-from actinia_core.core.common.response_models import UnivarResultModel, ProcessingResponseModel
+from actinia_core.models.response_models import UnivarResultModel, ProcessingResponseModel
 from actinia_core.core.common.landsat_processing_library import LandsatProcessing
-from actinia_core.core.common.response_models import ProcessingErrorResponseModel
+from actinia_core.models.response_models import ProcessingErrorResponseModel
 
 __license__ = "GPLv3"
 __author__ = "Sören Gebbert"

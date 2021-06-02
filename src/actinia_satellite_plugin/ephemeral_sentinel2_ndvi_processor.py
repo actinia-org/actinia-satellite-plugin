@@ -12,7 +12,7 @@ from actinia_core.core.common.redis_interface import enqueue_job
 from actinia_core.core.common.sentinel_processing_library import Sentinel2Processing
 from actinia_core.core.common.process_object import Process
 from actinia_core.core.common.exceptions import AsyncProcessError
-from actinia_core.core.common.response_models import UnivarResultModel, ProcessingResponseModel
+from actinia_core.models.response_models import UnivarResultModel, ProcessingResponseModel
 from actinia_core.core.common.app import auth
 from actinia_core.core.common.api_logger import log_api_call
 from actinia_core.models.response_models import ProcessingErrorResponseModel
