@@ -5,17 +5,17 @@ import tempfile
 from copy import deepcopy
 from flask import jsonify, make_response
 from flask_restful_swagger_2 import swagger
-from actinia_core.resources.ephemeral_processing_with_export import EphemeralProcessingWithExport
-from actinia_core.resources.resource_base import ResourceBase
-from actinia_core.resources.common.google_satellite_bigquery_interface import GoogleSatelliteBigQueryInterface
-from actinia_core.resources.common.redis_interface import enqueue_job
-from actinia_core.resources.common.sentinel_processing_library import Sentinel2Processing
-from actinia_core.resources.common.process_object import Process
-from actinia_core.resources.common.exceptions import AsyncProcessError
-from actinia_core.resources.common.response_models import UnivarResultModel, ProcessingResponseModel
-from actinia_core.resources.common.app import auth
-from actinia_core.resources.common.api_logger import log_api_call
-from actinia_core.resources.common.response_models import ProcessingErrorResponseModel
+from actinia_core.rest.ephemeral_processing_with_export import EphemeralProcessingWithExport
+from actinia_core.rest.resource_base import ResourceBase
+from actinia_core.core.common.google_satellite_bigquery_interface import GoogleSatelliteBigQueryInterface
+from actinia_core.core.common.redis_interface import enqueue_job
+from actinia_core.core.common.sentinel_processing_library import Sentinel2Processing
+from actinia_core.core.common.process_object import Process
+from actinia_core.core.common.exceptions import AsyncProcessError
+from actinia_core.core.common.response_models import UnivarResultModel, ProcessingResponseModel
+from actinia_core.core.common.app import auth
+from actinia_core.core.common.api_logger import log_api_call
+from actinia_core.models.response_models import ProcessingErrorResponseModel
 
 __license__ = "GPLv3"
 __author__     = "Sören Gebbert"

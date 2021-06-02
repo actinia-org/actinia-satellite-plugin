@@ -8,10 +8,10 @@ import os
 from src.actinia_satellite_plugin.endpoints import create_endpoints
 from actinia_core.health_check import health_check
 from actinia_core.version import version
-from actinia_core.resources.common.app import flask_app
-from actinia_core.resources.common.config import global_config, DEFAULT_CONFIG_PATH
-from actinia_core.resources.common.redis_interface import connect, create_job_queues
-from actinia_core.resources.common.process_queue import create_process_queue
+from actinia_core.core.common.app import flask_app
+from actinia_core.core.common.config import global_config, DEFAULT_CONFIG_PATH
+from actinia_core.core.common.redis_interface import connect, create_job_queues
+from actinia_core.core.common.process_queue import create_process_queue
 
 __license__ = "GPLv3"
 __author__     = "Sören Gebbert"
