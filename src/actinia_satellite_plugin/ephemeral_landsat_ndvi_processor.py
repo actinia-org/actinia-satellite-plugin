@@ -15,6 +15,7 @@ from actinia_core.core.common.exceptions import AsyncProcessError
 from actinia_core.models.response_models import UnivarResultModel, ProcessingResponseModel
 from actinia_core.core.common.landsat_processing_library import LandsatProcessing
 from actinia_core.models.response_models import ProcessingErrorResponseModel
+from actinia_core.core.common.app import URL_PREFIX
 
 __license__ = "GPLv3"
 __author__ = "Sören Gebbert"
@@ -54,8 +55,8 @@ class LandsatNDVIResponseModel(ProcessingResponseModel):
       "api_info": {
         "endpoint": "asyncephemerallandsatprocessingresource",
         "method": "POST",
-        "path": "/api/v1/landsat_process/LC80440342016259LGN00/TOAR/NDVI",
-        "request_url": "http://localhost:5000/api/v1/landsat_process/LC80440342016259LGN00/TOAR/NDVI"
+        "path": f"{URL_PREFIX}/landsat_process/LC80440342016259LGN00/TOAR/NDVI",
+        "request_url": f"http://localhost:5000{URL_PREFIX}/landsat_process/LC80440342016259LGN00/TOAR/NDVI"
       },
       "datetime": "2018-05-30 11:22:58.315162",
       "http_code": 200,
@@ -635,10 +636,10 @@ class LandsatNDVIResponseModel(ProcessingResponseModel):
       "timestamp": 1527679378.31516,
       "urls": {
         "resources": [
-          "http://localhost:5000/api/v1/resource/superadmin/resource_id-6282c634-42e1-417c-a092-c9b21c3283cc/tmp80apvh0h.png",
-          "http://localhost:5000/api/v1/resource/superadmin/resource_id-6282c634-42e1-417c-a092-c9b21c3283cc/LC80440342016259LGN00_TOAR_NDVI.tiff"
+          f"http://localhost:5000{URL_PREFIX}/resource/superadmin/resource_id-6282c634-42e1-417c-a092-c9b21c3283cc/tmp80apvh0h.png",
+          f"http://localhost:5000{URL_PREFIX}/resource/superadmin/resource_id-6282c634-42e1-417c-a092-c9b21c3283cc/LC80440342016259LGN00_TOAR_NDVI.tiff"
         ],
-        "status": "http://localhost:5000/api/v1/resources/superadmin/resource_id-6282c634-42e1-417c-a092-c9b21c3283cc"
+        "status": f"http://localhost:5000{URL_PREFIX}/resources/superadmin/resource_id-6282c634-42e1-417c-a092-c9b21c3283cc"
       },
       "user_id": "superadmin"
     }

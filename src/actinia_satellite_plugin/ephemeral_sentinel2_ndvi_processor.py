@@ -16,6 +16,7 @@ from actinia_core.models.response_models import UnivarResultModel, ProcessingRes
 from actinia_core.core.common.app import auth
 from actinia_core.core.common.api_logger import log_api_call
 from actinia_core.models.response_models import ProcessingErrorResponseModel
+from actinia_core.core.common.app import URL_PREFIX
 
 __license__ = "GPLv3"
 __author__     = "Sören Gebbert"
@@ -30,19 +31,19 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
     It is used as schema to define the *process_result* in a ProcessingResponseModel derivative.
     """
     type = 'object'
-    properties =  deepcopy(ProcessingResponseModel.properties)
+    properties = deepcopy(ProcessingResponseModel.properties)
     properties["process_results"] = {}
     properties["process_results"]["type"] = "array"
     properties["process_results"]["items"] = UnivarResultModel
-    required =  deepcopy(ProcessingResponseModel.required)
+    required = deepcopy(ProcessingResponseModel.required)
     example = {
       "accept_datetime": "2018-05-30 12:25:43.987713",
       "accept_timestamp": 1527683143.9877105,
       "api_info": {
         "endpoint": "asyncephemeralsentinel2processingresource",
         "method": "POST",
-        "path": "/api/v1/sentinel2_process/ndvi/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749",
-        "request_url": "http://localhost:8080/api/v1/sentinel2_process/ndvi/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749"
+        "path": f"{URL_PREFIX}/sentinel2_process/ndvi/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749",
+        "request_url": f"http://localhost:8080{URL_PREFIX}/sentinel2_process/ndvi/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749"
       },
       "datetime": "2018-05-30 12:29:11.800608",
       "http_code": 200,
@@ -617,10 +618,10 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
       "timestamp": 1527683351.8002071,
       "urls": {
         "resources": [
-          "http://localhost:8080/api/v1/resource/superadmin/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce/tmpsaeegg0q.png",
-          "http://localhost:8080/api/v1/resource/superadmin/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce/ndvi.tiff"
+          f"http://localhost:8080{URL_PREFIX}/resource/superadmin/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce/tmpsaeegg0q.png",
+          f"http://localhost:8080{URL_PREFIX}/resource/superadmin/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce/ndvi.tiff"
         ],
-        "status": "http://localhost:8080/api/v1/resources/superadmin/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce"
+        "status": f"http://localhost:8080{URL_PREFIX}/resources/superadmin/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce"
       },
       "user_id": "superadmin"
     }
