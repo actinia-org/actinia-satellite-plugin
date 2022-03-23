@@ -10,8 +10,8 @@ from datetime import timedelta
 from copy import deepcopy
 from flask_restful_swagger_2 import swagger, Schema
 from actinia_core.models.response_models import  ProcessingResponseModel, ProcessingErrorResponseModel
-from actinia_core.rest.persistent_processing import PersistentProcessing
-from actinia_core.rest.resource_base import ResourceBase
+from actinia_core.processing.actinia_processing.ephemeral.persistent_processing import PersistentProcessing
+from actinia_core.rest.base.resource_base import ResourceBase
 from actinia_core.core.common.redis_interface import enqueue_job
 from actinia_core.core.common.google_satellite_bigquery_interface import GoogleSatelliteBigQueryInterface
 from actinia_core.core.common.landsat_processing_library import LandsatProcessing, SCENE_BANDS, extract_sensor_id_from_scene_id, RASTER_SUFFIXES
