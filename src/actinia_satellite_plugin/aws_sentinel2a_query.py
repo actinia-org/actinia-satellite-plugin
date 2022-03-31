@@ -8,7 +8,7 @@ from actinia_core.core.common.app import auth
 from actinia_core.core.common.api_logger import log_api_call
 from actinia_core.models.response_models import SimpleResponseModel
 from actinia_core.core.common.aws_sentinel_interface import AWSSentinel2AInterface
-from actinia_core.rest.resource_base import ResourceBase
+from actinia_core.rest.base.resource_base import ResourceBase
 from flask_restful_swagger_2 import swagger, Schema
 from copy import deepcopy
 
