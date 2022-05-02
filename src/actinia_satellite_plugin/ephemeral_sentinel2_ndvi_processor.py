@@ -160,7 +160,7 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
         {
           "executable": "python3",
           "parameter": [
-            "/usr/local/bin/grass79",
+            "/usr/local/bin/grass",
             "-e",
             "-c",
             "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08",
