@@ -308,7 +308,7 @@ class LandsatNDVIResponseModel(ProcessingResponseModel):
         {
           "executable": "python3",
           "parameter": [
-            "/usr/local/bin/grass79",
+            "/usr/local/bin/grass",
             "-e",
             "-c",
             "/actinia/workspace/download_cache/superadmin/LC80440342016259LGN00_B1.TIF",
