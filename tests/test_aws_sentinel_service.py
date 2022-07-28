@@ -6,7 +6,7 @@ from flask.json import dumps as json_dump
 
 try:
     from .test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
-except:
+except Exception:
     from test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 
 
@@ -20,7 +20,8 @@ __email__ = "soerengebbert@googlemail.com"
 SCENES = {
     "product_ids": [
         "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_20170202T090155",
-        "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302",
+        "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_"
+        "20151207T003302",
         "S2A_MSIL1C_20170218T143751_N0204_R096_T20PRT_20170218T143931",
     ],
     "bands": ["B04", "B08"],
@@ -29,7 +30,8 @@ SCENES = {
 SCENES_ERROR = {
     "product_ids": [
         "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_20170202T090155_NOPE",
-        "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302",
+        "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_"
+        "20151207T003302",
         "S2A_MSIL1C_20170218T143751_N0204_R096_T20PRT_20170218T143931",
     ],
     "bands": ["B04", "B08"],

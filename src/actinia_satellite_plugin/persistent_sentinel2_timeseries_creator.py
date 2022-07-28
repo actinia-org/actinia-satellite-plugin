@@ -12,9 +12,8 @@ from actinia_core.models.response_models import (
     ProcessingResponseModel,
     ProcessingErrorResponseModel,
 )
-from actinia_core.processing.actinia_processing.ephemeral.persistent_processing import (
-    PersistentProcessing,
-)
+from actinia_core.processing.actinia_processing.ephemeral\
+    .persistent_processing import PersistentProcessing
 from actinia_core.rest.base.resource_base import ResourceBase
 from actinia_core.core.common.redis_interface import enqueue_job
 from actinia_core.core.common.google_satellite_bigquery_interface import (
@@ -33,26 +32,33 @@ __email__ = "soerengebbert@googlemail.com"
 
 
 class Sentinel2ASceneListModel(Schema):
-    """This schema defines the JSON input of the sentinel time series creator resource"""
+    """
+    This schema defines the JSON input of the sentinel time series creator
+    resource
+    """
 
     type = "object"
     properties = {
         "bands": {
             "type": "array",
             "items": {"type": "string"},
-            "description": "A list of band names that should be downloaded and imported for each Sentinel-2 scene."
-            'Available are the following band names: "B01", "B02", "B03", "B04", "B05", "B06", "B07",'
-            '"B08", "B8A", "B09" "B10", "B11", "B12"',
+            "description": "A list of band names that should be downloaded "
+                           "and imported for each Sentinel-2 scene."
+            'Available are the following band names: "B01", "B02", "B03", '
+            '"B04", "B05", "B06", "B07", "B08", "B8A", "B09" "B10", "B11", '
+            '"B12"',
         },
         "strds": {
             "type": "array",
             "items": {"type": "string"},
-            "description": "The names of the new space-time raster datasets, one for each band",
+            "description": "The names of the new space-time raster datasets,"
+                           " one for each band",
         },
         "product_ids": {
             "type": "array",
             "items": {"type": "string"},
-            "description": "A list of Sentinel-2 scene names that should be downloaded and imported",
+            "description": "A list of Sentinel-2 scene names that should be "
+                           "downloaded and imported",
         },
     }
     example = {
@@ -70,38 +76,44 @@ class Sentinel2ASceneListModel(Schema):
 
 SCHEMA_DOC = {
     "tags": ["Satellite Image Algorithms"],
-    "description": "Download and import Sentinel2A scenes into a new mapset and create a space-time raster dataset "
+    "description": "Download and import Sentinel2A scenes into a new mapset "
+    "and create a space-time raster dataset "
     "for each imported band. "
     "The resulting data will be located in a persistent user database. "
     "The location name is part of the path and must exist. The mapset will "
-    "be created while importing and should not already exist in the location. The names of the"
-    "Sentinel-2 scenes and the band names that should be downloaded must be specified "
-    "in the HTTP body as application/json content. In addition, the names of the "
-    "STRDS that should manage the sentinel scenes "
-    "must be provided in the application/json content. For each band a separate "
-    "STRDS name must be provided."
-    "This call is performed asynchronously. The provided resource URL must be pulled "
-    "to receive the status of the import. The data is available in the provided "
-    "location/mapset, after the download and import finished. Minimum required user role: user.",
+    "be created while importing and should not already exist in the location. "
+    "The names of the Sentinel-2 scenes and the band names that should"
+    " be downloaded must be specified in the HTTP body as"
+    " application/json content. In addition, the names of the "
+    "STRDS that should manage the sentinel scenes must"
+    " be provided in the application/json content. For each band a separate "
+    "STRDS name must be provided. This call "
+    "is performed asynchronously. The provided resource URL must be pulled "
+    "to receive the status of the import. The data is available in the "
+    "provided location/mapset, after the download and import finished. "
+    "Minimum required user role: user.",
     "consumes": ["application/json"],
     "parameters": [
         {
             "name": "location_name",
-            "description": "The location name to import the Sentinel2A scenes in",
+            "description": "The location name to import the Sentinel2A scenes "
+                           "in",
             "required": True,
             "in": "path",
             "type": "string",
         },
         {
             "name": "mapset_name",
-            "description": "The name of the mapset to import the Sentinel2A scenes in",
+            "description": "The name of the mapset to import the Sentinel2A "
+                           "scenes in",
             "required": True,
             "in": "path",
             "type": "string",
         },
         {
             "name": "tiles",
-            "description": "The list of Sentinel-2 scenes, the band names and the target STRDS names",
+            "description": "The list of Sentinel-2 scenes, the band names and "
+                           "the target STRDS names",
             "required": True,
             "in": "body",
             "schema": Sentinel2ASceneListModel,
@@ -127,19 +139,25 @@ class AsyncSentinel2TimeSeriesCreatorResource(ResourceBase):
 
     @swagger.doc(deepcopy(SCHEMA_DOC))
     def post(self, location_name, mapset_name):
-        """Download and import Sentinel2A scenes into a new mapset and create a space-time raster dataset for each imported band.
+        """
+        Download and import Sentinel2A scenes into a new mapset and create
+        a space-time raster dataset for each imported band.
 
         Args:
             location_name (str): The name of the location
-            target_mapset_name (str): The name of the mapset that should be created
+            target_mapset_name (str): The name of the mapset that should be
+                                      created
 
-        Process arguments must be provided as JSON document in the POST request::
+        Process arguments must be provided as JSON document in the POST request
 
               {"bands":["B04","B08"],
                "strds":["Sentinel_B04", "Sentinel_b08"],
-               "product_ids":["S2A_MSIL1C_20170212T104141_N0204_R008_T31TGJ_20170212T104138",
-                              "S2A_MSIL1C_20170227T095021_N0204_R079_T34TBM_20170227T095613",
-                              "S2A_MSIL1C_20170202T104241_N0204_R008_T32UNE_20170202T104236"]}
+               "product_ids":["S2A_MSIL1C_20170212T104141_N0204_R008_T31TGJ_"
+                              "20170212T104138",
+                              "S2A_MSIL1C_20170227T095021_N0204_R079_T34TBM_"
+                              "20170227T095613",
+                              "S2A_MSIL1C_20170202T104241_N0204_R008_T32UNE_"
+                              "20170202T104236"]}
 
         Returns:
             flask.Response:
@@ -151,11 +169,13 @@ class AsyncSentinel2TimeSeriesCreatorResource(ResourceBase):
             {
               "HTTP code": 200,
               "Messages": "Resource accepted",
-              "Resource id": "resource_id-985164c9-1db9-49cf-b2c4-3e8e48500e31",
+              "Resource id": "resource_id-985164c9-1db9-49cf-b2c4-"
+                             "3e8e48500e31",
               "Status": "accepted",
               "URLs": {
                 "Resources": [],
-                "Status": "http://104.155.60.87/status/soeren/resource_id-985164c9-1db9-49cf-b2c4-3e8e48500e31"
+                "Status": "http://104.155.60.87/status/soeren/resource_id-"
+                          "985164c9-1db9-49cf-b2c4-3e8e48500e31"
               },
               "User id": "soeren"
             }
@@ -180,18 +200,20 @@ def start_job(*args):
 
 
 class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
-    """Create a space time raster dataset from all provided product_ids for each Sentinel2A band
-    in a new mapset.
+    """
+    Create a space time raster dataset from all provided product_ids for
+    each Sentinel2A band in a new mapset.
 
-    The Sentiel2A scenes are downloaded , imported and pre-processed before they are registered
-    in the band specific space time datasets.
+    The Sentiel2A scenes are downloaded , imported and pre-processed before
+    they are registered in the band specific space time datasets.
     """
 
     def __init__(self, rdc):
         """Constructor
 
         Args:
-            rdc (ResourceDataContainer): The data container that contains all required variables for processing
+            rdc (ResourceDataContainer): The data container that contains all
+                                         required variables for processing
 
         """
         PersistentProcessing.__init__(self, rdc)
@@ -209,10 +231,13 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
         self.query_result = None
 
     def _prepare_sentinel2_download(self):
-        """Check the download cache if the file already exists, to avoid redundant downloads.
-        The downloaded files will be stored in a temporary directory. After the download of all files
-        completes, the downloaded files will be moved to the download cache. This avoids broken
-        files in case a download was interrupted or stopped by termination.
+        """
+        Check the download cache if the file already exists, to avoid redundant
+        downloads.
+        The downloaded files will be stored in a temporary directory.
+        After the download of all files completes, the downloaded files will
+        be moved to the download cache. This avoids broken files in case a
+        download was interrupted or stopped by termination.
 
         """
         # Create the download cache directory if it does not exists
@@ -221,7 +246,8 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
         else:
             os.mkdir(self.config.DOWNLOAD_CACHE)
 
-        # Create the user specific download cache directory to put the downloaded files into it
+        # Create the user specific download cache directory to put the
+        # downloaded files into it
         if os.path.exists(self.user_download_cache_path):
             pass
         else:
@@ -253,8 +279,9 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
             )
 
     def _import_sentinel2_scenes(self):
-        """Import all found Sentinel2 scenes with their bands and create the space time raster datasets
-        to register the maps in.
+        """
+        Import all found Sentinel2 scenes with their bands and create the
+        space time raster datasets to register the maps in.
 
         Raises:
             AsyncProcessError: In case something went wrong
@@ -295,7 +322,8 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
         self._execute_process_list(process_list=all_commands)
 
         # IMPORTANT:
-        # The registration must be performed in the temporary mapset with the same name as the target mapset,
+        # The registration must be performed in the temporary mapset with the
+        # same name as the target mapset,
         # since the temporal database will contain the mapset name.
 
         register_commands = {}
@@ -331,7 +359,8 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
             # Use only the product ids that were found in the big query
             for product_id in self.query_result:
 
-                # We need to create a time interval, otherwise the temporal algebra will not work :/
+                # We need to create a time interval, otherwise the temporal
+                # algebra will not work :/
                 start_time = dtparser.parse(
                     self.query_result[product_id]["timestamp"].split(".")[0]
                 )
@@ -401,9 +430,10 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
                 "Mapset <%s> already exists." % self.target_mapset_name
             )
 
-        # Init GRASS environment and create the temporary mapset with the same name as the target mapset
-        # This is required to register the raster maps in the temporary directory, but use them in
-        # persistent directory
+        # Init GRASS environment and create the temporary mapset with the same
+        # name as the target mapset
+        # This is required to register the raster maps in the temporary
+        # directory, but use them in persistent directory
 
         # Create the temp database and link the
         # required mapsets into it
@@ -418,7 +448,8 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
         # Create the temporary mapset and switch into it
         self._create_temporary_mapset(temp_mapset_name=self.target_mapset_name)
 
-        # Setup the download cache and query the BigQuery database of google for product_ids
+        # Setup the download cache and query the BigQuery database of google
+        # for product_ids
         self._prepare_sentinel2_download()
 
         # Check if all product ids were found

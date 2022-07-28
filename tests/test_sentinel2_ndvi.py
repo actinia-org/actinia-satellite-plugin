@@ -5,7 +5,7 @@ from flask.json import loads as json_load
 
 try:
     from .test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
-except:
+except Exception:
     from test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 
 
@@ -20,12 +20,13 @@ class SentinelProcessingTestCase(ActiniaResourceTestCaseBase):
     def test_ndvi_computation_small(self):
 
         # Large scene
-        # rv = self.server.post(URL_PREFIX + '/sentinel2_process/S2A_MSIL1C_20170216T102101_N0204_R065_T32UPV_20170216T102204',
+        # rv = self.server.post(URL_PREFIX + '/sentinel2_process/S2A_MSIL1C_'
+        #                  '20170216T102101_N0204_R065_T32UPV_20170216T102204',
         #                       headers=self.admin_auth_header)
         # Small scene
         rv = self.server.post(
-            URL_PREFIX
-            + "/sentinel2_process/ndvi/S2A_MSIL1C_20170212T104141_N0204_R008_T31TGJ_20170212T104138",
+            f"{URL_PREFIX}/sentinel2_process/ndvi/S2A_MSIL1C_20170212T104141_"
+            "N0204_R008_T31TGJ_20170212T104138",
             headers=self.admin_auth_header,
         )
         pprint(json_load(rv.data))
@@ -48,12 +49,13 @@ class SentinelProcessingTestCase(ActiniaResourceTestCaseBase):
     def incative_test_ndvi_computation_small_gcs(self):
 
         # Large scene
-        # rv = self.server.post(URL_PREFIX + '/sentinel2_process/S2A_MSIL1C_20170216T102101_N0204_R065_T32UPV_20170216T102204',
+        # rv = self.server.post(URL_PREFIX + '/sentinel2_process/S2A_MSIL1C_'
+        #                    '20170216T102101_N0204_R065_T32UPV_20170216T102204',
         #                       headers=self.admin_auth_header)
         # Small scene
         rv = self.server.post(
-            URL_PREFIX
-            + "/sentinel2_process_gcs/ndvi/S2A_MSIL1C_20170212T104141_N0204_R008_T31TGJ_20170212T104138",
+            f"{URL_PREFIX}/sentinel2_process_gcs/ndvi/S2A_MSIL1C_"
+            "20170212T104141_N0204_R008_T31TGJ_20170212T104138",
             headers=self.admin_auth_header,
         )
         pprint(json_load(rv.data))
@@ -76,12 +78,13 @@ class SentinelProcessingTestCase(ActiniaResourceTestCaseBase):
     def incative_test_ndvi_computation_big(self):
 
         # Small scene
-        # rv = self.server.post(URL_PREFIX + '/sentinel2_process/S2A_MSIL1C_20170212T104141_N0204_R008_T31TGJ_20170212T104138',
+        # rv = self.server.post(URL_PREFIX + '/sentinel2_process/S2A_MSIL1C_'
+        #                  '20170212T104141_N0204_R008_T31TGJ_20170212T104138',
         #                       headers=self.admin_auth_header)
         # Large scene
         rv = self.server.post(
-            URL_PREFIX
-            + "/sentinel2_process/ndvi/S2A_MSIL1C_20170216T102101_N0204_R065_T32UPV_20170216T102204",
+            f"{URL_PREFIX}/sentinel2_process/ndvi/S2A_MSIL1C_20170216T102101_"
+            "N0204_R065_T32UPV_20170216T102204",
             headers=self.admin_auth_header,
         )
         pprint(json_load(rv.data))
@@ -103,8 +106,8 @@ class SentinelProcessingTestCase(ActiniaResourceTestCaseBase):
 
     def incative_test_computation_error_1(self):
         rv = self.server.post(
-            URL_PREFIX
-            + "/sentinel2_process/ndvi/S2A_MSIL1C_20170212T1041_BLABLA_8_T31TGJ_20170212T104138.SAFE",
+            f"{URL_PREFIX}/sentinel2_process/ndvi/S2A_MSIL1C_20170212T1041_"
+            "BLABLA_8_T31TGJ_20170212T104138.SAFE",
             headers=self.admin_auth_header,
         )
         pprint(json_load(rv.data))
@@ -123,8 +126,8 @@ class SentinelProcessingTestCase(ActiniaResourceTestCaseBase):
 
     def incative_test_computation_error_2(self):
         rv = self.server.post(
-            URL_PREFIX
-            + "/sentinel2_process_gcs/ndvi/S2A_MSIL1C_20170212T1041_BLABLA_8_T31TGJ_20170212T104138.SAFE",
+            f"{URL_PREFIX}/sentinel2_process_gcs/ndvi/S2A_MSIL1C_20170212T1041"
+            "_BLABLA_8_T31TGJ_20170212T104138.SAFE",
             headers=self.admin_auth_header,
         )
         pprint(json_load(rv.data))

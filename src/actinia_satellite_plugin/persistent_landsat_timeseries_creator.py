@@ -13,9 +13,8 @@ from actinia_core.models.response_models import (
     ProcessingResponseModel,
     ProcessingErrorResponseModel,
 )
-from actinia_core.processing.actinia_processing.ephemeral.persistent_processing import (
-    PersistentProcessing,
-)
+from actinia_core.processing.actinia_processing.ephemeral\
+    .persistent_processing import PersistentProcessing
 from actinia_core.rest.base.resource_base import ResourceBase
 from actinia_core.core.common.redis_interface import enqueue_job
 from actinia_core.core.common.google_satellite_bigquery_interface import (
@@ -37,7 +36,10 @@ __email__ = "soerengebbert@googlemail.com"
 
 
 class LandsatSceneListModel(Schema):
-    """This schema defines the JSON input of the Landsat time series creator resource"""
+    """
+    This schema defines the JSON input of the Landsat time series creator
+    resource
+    """
 
     type = "object"
     properties = {
@@ -48,16 +50,19 @@ class LandsatSceneListModel(Schema):
         },
         "strds": {
             "type": "string",
-            "description": "The basename of the new space-time raster datasets (strds). "
+            "description": "The basename of the new space-time raster datasets"
+            " (strds). "
             "One for each band will be created and the basename will be "
             "extended by a band specific suffix.",
         },
         "scene_ids": {
             "type": "array",
             "items": {"type": "string"},
-            "description": "A list of Landsat scene names that should be downloaded and imported. Only scenes from a "
+            "description": "A list of Landsat scene names that should be"
+            " downloaded and imported. Only scenes from a "
             "specific satelleite can be imported and represented as strds. "
-            "Mixing of different satellites is not permitted. All bands will be imported "
+            "Mixing of different satellites is not permitted. All bands will "
+            "be imported "
             "and atmospherically corrected",
         },
     }
@@ -77,19 +82,22 @@ class LandsatSceneListModel(Schema):
 
 SCHEMA_DOC = {
     "tags": ["Satellite Image Algorithms"],
-    "description": "Download and import Landsat scenes into a new mapset and create a space-time raster dataset "
+    "description": "Download and import Landsat scenes into a new mapset and "
+    "create a space-time raster dataset "
     "for each imported band. "
     "The resulting data will be located in a persistent user database. "
     "The location name is part of the path and must exist. The mapset will "
-    "be created while importing and should not already exist in the location. The names of the"
+    "be created while importing and should not already exist in the location. "
+    "The names of the"
     "Landsat scenes that should be downloaded must be specified "
-    "in the HTTP body as application/json content. In addition, the basename of the "
-    "STRDS that should manage the Landsat scenes "
-    "must be provided in the application/json content. For each band a separate "
-    "strds will be cerated and the STRDS base name will be extended with the band number."
-    "This call is performed asynchronously. The provided resource URL must be pulled "
-    "to receive the status of the import. The data is available in the provided "
-    "location/mapset, after the download and import finished. Minimum required user role: user.",
+    "in the HTTP body as application/json content. In addition, the basename"
+    " of the STRDS that should manage the Landsat scenes must"
+    " be provided in the application/json content. For each band a separate "
+    "strds will be cerated and the STRDS base name will be extended with the "
+    "band number. This call is performed asynchronously. The provided resource"
+    " URL must be pulled to receive the status of the import. The data is "
+    "available in the provided location/mapset, after the download and import"
+    " finished. Minimum required user role: user.",
     "consumes": ["application/json"],
     "parameters": [
         {
@@ -101,14 +109,16 @@ SCHEMA_DOC = {
         },
         {
             "name": "mapset_name",
-            "description": "The name of the mapset to import the Landsat scenes in",
+            "description": "The name of the mapset to import the Landsat "
+                           "scenes in",
             "required": True,
             "in": "path",
             "type": "string",
         },
         {
             "name": "tiles",
-            "description": "The list of Landsat scenes, the band names and the target STRDS names",
+            "description": "The list of Landsat scenes, the band names and "
+                           "the target STRDS names",
             "required": True,
             "in": "body",
             "schema": LandsatSceneListModel,
@@ -134,13 +144,16 @@ class AsyncLandsatTimeSeriesCreatorResource(ResourceBase):
 
     @swagger.doc(deepcopy(SCHEMA_DOC))
     def post(self, location_name, mapset_name):
-        """Download and import Landsat scenes into a new mapset and create a space time dataset for each imported band.
+        """
+        Download and import Landsat scenes into a new mapset and create a
+        space time dataset for each imported band.
 
         Args:
             location_name (str): The name of the location
-            target_mapset_name (str): The name of the mapset that should be created
+            target_mapset_name (str): The name of the mapset that should be
+                                      created
 
-        Process arguments must be provided as JSON document in the POST request::
+        Process arguments must be provided as JSON document in the POST request
 
               {"strds":"Landsat_4_1983_09_01_01_30_00",
                "atcor_method": "TOAR",
@@ -158,11 +171,13 @@ class AsyncLandsatTimeSeriesCreatorResource(ResourceBase):
             {
               "HTTP code": 200,
               "Messages": "Resource accepted",
-              "Resource id": "resource_id-985164c9-1db9-49cf-b2c4-3e8e48500e31",
+              "Resource id": "resource_id-985164c9-1db9-49cf-b2c4-"
+              "3e8e48500e31",
               "Status": "accepted",
               "URLs": {
                 "Resources": [],
-                "Status": "http://104.155.60.87/status/soeren/resource_id-985164c9-1db9-49cf-b2c4-3e8e48500e31"
+                "Status": "http://104.155.60.87/status/soeren/resource_id-"
+                "985164c9-1db9-49cf-b2c4-3e8e48500e31"
               },
               "User id": "soeren"
             }
@@ -187,18 +202,21 @@ def start_job(*args):
 
 
 class LandsatTimeSeriesCreator(PersistentProcessing):
-    """Create a space time raster dataset from all provided scene_ids for each Sentinel2A band
+    """
+    Create a space time raster dataset from all provided scene_ids for each
+    Sentinel2A band
     in a new mapset.
 
-    The Sentiel2A scenes are downloaded , imported and pre-processed before they are registered
-    in the band specific space time datasets.
+    The Sentiel2A scenes are downloaded , imported and pre-processed before
+    they are registered in the band specific space time datasets.
     """
 
     def __init__(self, rdc):
         """Constructor
 
         Args:
-            rdc (ResourceDataContainer): The data container that contains all required variables for processing
+            rdc (ResourceDataContainer): The data container that contains all
+                                         required variables for processing
 
         """
         PersistentProcessing.__init__(self, rdc)
@@ -218,9 +236,12 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
         self.sensor_id = None
 
     def _prepare_download(self):
-        """Check the download cache if the file already exists, to avoid redundant downloads.
-        The downloaded files will be stored in a temporary directory. After the download of all files
-        completes, the downloaded files will be moved to the download cache. This avoids broken
+        """
+        Check the download cache if the file already exists, to avoid redundant
+        downloads.
+        The downloaded files will be stored in a temporary directory.
+        After the download of all files completes, the downloaded files will
+        be moved to the download cache. This avoids broken
         files in case a download was interrupted or stopped by termination.
 
         """
@@ -230,7 +251,8 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
         else:
             os.mkdir(self.config.DOWNLOAD_CACHE)
 
-        # Create the user specific download cache directory to put the downloaded files into it
+        # Create the user specific download cache directory to put the
+        # downloaded files into it
         if os.path.exists(self.user_download_cache_path):
             pass
         else:
@@ -245,14 +267,16 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
         sensor_ids = {}
         for scene_id in self.scene_ids:
 
-            # Check if the the list of scenes contains scenes from different satellites
+            # Check if the the list of scenes contains scenes from different
+            # satellites
             self.sensor_id = extract_sensor_id_from_scene_id(scene_id=scene_id)
             sensor_ids[self.sensor_id] = self.sensor_id
 
             if len(sensor_ids) > 2:
                 raise AsyncProcessError(
-                    "Different satellites are in the list of scenes to be imported. "
-                    "Only scenes from a single satellite an be imported at once."
+                    "Different satellites are in the list of scenes to be "
+                    "imported. Only scenes from a single satellite an be "
+                    "imported at once."
                 )
 
         # All bands are imported, except the MTL file
@@ -278,8 +302,9 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
             )
 
     def _import_scenes(self):
-        """Import all found Sentinel2 scenes with their bands and create the space time raster datasets
-        to register the maps in.
+        """
+        Import all found Sentinel2 scenes with their bands and create the
+        space time raster datasets to register the maps in.
 
         Raises:
             AsyncProcessError: In case something went wrong
@@ -324,7 +349,8 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
         self._execute_process_list(process_list=all_commands)
 
         # IMPORTANT:
-        # The registration must be performed in the temporary mapset with the same name as the target mapset,
+        # The registration must be performed in the temporary mapset with the
+        # same name as the target mapset,
         # since the temporal database will contain the mapset name.
 
         register_commands = {}
@@ -359,7 +385,8 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
             # Use only the product ids that were found in the big query
             for scene_id in self.query_result:
 
-                # We need to create a time interval, otherwise the temporal algebra will not work :/
+                # We need to create a time interval, otherwise the temporal
+                # algebra will not work :/
                 start_time = dtparser.parse(
                     self.query_result[scene_id]["timestamp"].split(".")[0]
                 )
@@ -415,9 +442,10 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
                 "Mapset <%s> already exists." % self.target_mapset_name
             )
 
-        # Init GRASS environment and create the temporary mapset with the same name as the target mapset
-        # This is required to register the raster maps in the temporary directory, but use them in
-        # persistent directory
+        # Init GRASS environment and create the temporary mapset with the same
+        # name as the target mapset
+        # This is required to register the raster maps in the temporary
+        # directory, but use them in persistent directory
 
         # Create the temp database and link the
         # required mapsets into it
@@ -432,7 +460,8 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
         # Create the temporary mapset and switch into it
         self._create_temporary_mapset(temp_mapset_name=self.target_mapset_name)
 
-        # Setup the download cache and query the BigQuery database of google for scene_ids
+        # Setup the download cache and query the BigQuery database of google
+        # for scene_ids
         self._prepare_download()
 
         # Check if all product ids were found

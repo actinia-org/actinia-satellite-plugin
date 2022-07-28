@@ -71,7 +71,8 @@ class SatelliteSceneEntry(Schema):
         "cloud_cover": "100.0",
         "east_lon": 117.334772,
         "north_lat": -73.8673822679,
-        "scene_id": "S2A_MSIL1C_20170101T003802_N0204_R116_T50CMC_20170101T003759",
+        "scene_id": "S2A_MSIL1C_20170101T003802_N0204_R116_T50CMC_"
+                    "20170101T003759",
         "sensing_time": "2017-01-01T00:37:59.459000Z",
         "south_lat": -74.8755595194,
         "total_size": 608562784,
@@ -94,7 +95,8 @@ class SatelliteSceneList(Schema):
             "cloud_cover": "100.0",
             "east_lon": 117.334772,
             "north_lat": -73.8673822679,
-            "scene_id": "S2A_MSIL1C_20170101T003802_N0204_R116_T50CMC_20170101T003759",
+            "scene_id": "S2A_MSIL1C_20170101T003802_N0204_R116_T50CMC_"
+                        "20170101T003759",
             "sensing_time": "2017-01-01T00:37:59.459000Z",
             "south_lat": -74.8755595194,
             "total_size": 608562784,
@@ -104,7 +106,8 @@ class SatelliteSceneList(Schema):
             "cloud_cover": "100.0",
             "east_lon": 117.355376908,
             "north_lat": -74.7623823271,
-            "scene_id": "S2A_MSIL1C_20170101T003802_N0204_R116_T50CMB_20170101T003759",
+            "scene_id": "S2A_MSIL1C_20170101T003802_N0204_R116_T50CMB_20170"
+                        "101T003759",
             "sensing_time": "2017-01-01T00:37:59.459000Z",
             "south_lat": -75.7719656592,
             "total_size": 604326630,
@@ -115,7 +118,8 @@ class SatelliteSceneList(Schema):
 
 SCHEMA_LAND_DOC = {
     "tags": ["Satellite Image Algorithms"],
-    "description": "Query the Google Landsat archives using time interval, lat/lon coordinates, "
+    "description": "Query the Google Landsat archives using time interval,"
+                   " lat/lon coordinates, "
     "scene id, spacecraft id and cloud cover. "
     "All scenes that are located within the time interval and that intersect "
     "the given latitude/longitude coordinates are returned as a list of "
@@ -124,14 +128,16 @@ SCHEMA_LAND_DOC = {
     "parameters": [
         {
             "name": "scene_id",
-            "description": "The scene id of the landsat scenes that should be searched",
+            "description": "The scene id of the landsat scenes that should "
+                           "be searched",
             "required": False,
             "in": "query",
             "type": "string",
         },
         {
             "name": "spacecraft_id",
-            "description": "The spacecraft id of the landsat scenes that should be searched",
+            "description": "The spacecraft id of the landsat scenes that "
+                           "should be searched",
             "required": False,
             "in": "query",
             "type": "string",
@@ -155,7 +161,8 @@ SCHEMA_LAND_DOC = {
         },
         {
             "name": "lon",
-            "description": "The longitude coordinate with which the scenes should intersect",
+            "description": "The longitude coordinate with which the scenes "
+                           "should intersect",
             "required": False,
             "in": "query",
             "type": "number",
@@ -163,7 +170,8 @@ SCHEMA_LAND_DOC = {
         },
         {
             "name": "lat",
-            "description": "The latitude coordinate with which the scenes should intersect",
+            "description": "The latitude coordinate with which the scenes "
+                           "should intersect",
             "required": False,
             "in": "query",
             "type": "number",
@@ -193,8 +201,8 @@ SCHEMA_LAND_DOC = {
 
 SCHEMA_SENT_DOC = {
     "tags": ["Satellite Image Algorithms"],
-    "description": "Query the Google Sentinel2 archives using time interval, lat/lon coordinates, "
-    "scene id and cloud cover. "
+    "description": "Query the Google Sentinel2 archives using time interval, "
+    "lat/lon coordinates, scene id and cloud cover. "
     "All scenes that are located within the time interval and that intersect "
     "the given latitude/longitude coordinates are returned as a list of "
     "scene names with associated time stamps. "
@@ -202,7 +210,8 @@ SCHEMA_SENT_DOC = {
     "parameters": [
         {
             "name": "scene_id",
-            "description": "The scene id also named product id of the Sentinel2A scenes that should be searched",
+            "description": "The scene id also named product id of the "
+                           "Sentinel2A scenes that should be searched",
             "required": False,
             "in": "query",
             "type": "string",
@@ -225,7 +234,8 @@ SCHEMA_SENT_DOC = {
         },
         {
             "name": "lon",
-            "description": "The longitude coordinate with which the scenes should intersect",
+            "description": "The longitude coordinate with which the scenes "
+                           "should intersect",
             "required": False,
             "in": "query",
             "type": "number",
@@ -233,7 +243,8 @@ SCHEMA_SENT_DOC = {
         },
         {
             "name": "lat",
-            "description": "The latitude coordinate with which the scenes should intersect",
+            "description": "The latitude coordinate with which the scenes "
+                           "should intersect",
             "required": False,
             "in": "query",
             "type": "number",
@@ -262,7 +273,10 @@ SCHEMA_SENT_DOC = {
 
 
 class SatelliteQuery(Resource):
-    """Query the satellites Landsat4-8 and Sentinel2A archives in the google BigQuery database"""
+    """
+    Query the satellites Landsat4-8 and Sentinel2A archives in the google
+    BigQuery database
+    """
 
     decorators = [log_api_call, auth.login_required]
 
@@ -368,7 +382,10 @@ class LandsatQuery(SatelliteQuery):
 
     @swagger.doc(deepcopy(SCHEMA_LAND_DOC))
     def get(self):
-        """Query the Google Landsat archives using time interval, lat/lon coordinates, scene id, spacecraft id and cloud cover."""
+        """
+        Query the Google Landsat archives using time interval, lat/lon
+        coordinates, scene id, spacecraft id and cloud cover.
+        """
         return self._get("landsat")
 
 
@@ -377,5 +394,8 @@ class Sentinel2Query(SatelliteQuery):
 
     @swagger.doc(deepcopy(SCHEMA_SENT_DOC))
     def get(self):
-        """Query the Google Sentinel2 archives using time interval, lat/lon coordinates, scene id and cloud cover."""
+        """
+        Query the Google Sentinel2 archives using time interval, lat/lon
+        coordinates, scene id and cloud cover.
+        """
         return self._get("sentinel2")

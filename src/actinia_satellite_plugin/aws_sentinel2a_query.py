@@ -27,23 +27,29 @@ class BandInformationEntry(Schema):
     properties = {
         "file_name": {
             "type": "string",
-            "description": "The suggested file name of this band from the requested satellite scene",
+            "description": "The suggested file name of this band from the "
+                           "requested satellite scene",
         },
         "map_name": {
             "type": "string",
-            "description": "The suggested GRASS GIS raster map name of this band from the requested satellite scene",
+            "description": "The suggested GRASS GIS raster map name of this "
+                           "band from the requested satellite scene",
         },
         "public_url": {
             "type": "string",
-            "description": "The download URl of the band from requested satellite scene",
+            "description": "The download URl of the band from requested "
+                           "satellite scene",
         },
     }
     required = ["public_url", "map_name", "file_name"]
 
     example = {
-        "file_name": "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_20170202T090155_tile_1_band_B04.jp2",
-        "map_name": "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_20170202T090155_tile_1_band_B04",
-        "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/36/T/VT/2017/2/2/0/B04.jp2",
+        "file_name": "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_"
+                     "20170202T090155_tile_1_band_B04.jp2",
+        "map_name": "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_"
+                    "20170202T090155_tile_1_band_B04",
+        "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/36/T/"
+                      "VT/2017/2/2/0/B04.jp2",
     }
 
 
@@ -76,7 +82,8 @@ class Sentinel2ATileEntry(Schema):
         },
         "url": {
             "type": "string",
-            "description": "The url to Sentinel2A scene root directory that contains all informations about the scene",
+            "description": "The url to Sentinel2A scene root directory that "
+                           "contains all informations about the scene",
         },
         "timestamp": {
             "type": "string",
@@ -88,20 +95,30 @@ class Sentinel2ATileEntry(Schema):
 
     example = {
         "B04": {
-            "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B04.jp2",
-            "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B04",
-            "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/B04.jp2",
+            "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20"
+                         "151207T003302_20151207T003302_tile_14_band_B04.jp2",
+            "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_"
+                        "V20151207T003302_20151207T003302_tile_14_band_B04",
+            "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/"
+                          "XE/2015/12/7/0/B04.jp2",
         },
         "B08": {
-            "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B08.jp2",
-            "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B08",
-            "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/B08.jp2",
+            "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20"
+                         "151207T003302_20151207T003302_tile_14_band_B08.jp2",
+            "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_"
+                        "V20151207T003302_20151207T003302_tile_14_band_B08",
+            "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/"
+                          "XE/2015/12/7/0/B08.jp2",
         },
-        "info": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/tileInfo.json",
-        "metadata": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/metadata.xml",
-        "preview": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/preview.jpg",
+        "info": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/"
+                "12/7/0/tileInfo.json",
+        "metadata": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/"
+                    "2015/12/7/0/metadata.xml",
+        "preview": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/"
+                   "2015/12/7/0/preview.jpg",
         "timestamp": "2015-12-07T00:33:02.634Z",
-        "url": "http://sentinel-s2-l1c.s3-website.eu-central-1.amazonaws.com/#tiles/57/V/XE/2015/12/7/0/",
+        "url": "http://sentinel-s2-l1c.s3-website.eu-central-1.amazonaws.com/"
+               "#tiles/57/V/XE/2015/12/7/0/",
     }
 
 
@@ -120,24 +137,39 @@ class Sentinel2ASceneEntry(Schema):
     }
     required = ["product_id", "tiles"]
     example = {
-        "product_id": "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_20170202T090155",
+        "product_id": "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_"
+                      "20170202T090155",
         "tiles": [
             {
                 "B04": {
-                    "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B04.jp2",
-                    "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B04",
-                    "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/B04.jp2",
+                    "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_"
+                                 "R102_V20151207T003302_20151207T003302_tile_"
+                                 "14_band_B04.jp2",
+                    "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102"
+                                "_V20151207T003302_20151207T003302_tile_14_"
+                                "band_B04",
+                    "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/"
+                                  "tiles/57/V/XE/2015/12/7/0/B04.jp2",
                 },
                 "B08": {
-                    "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B08.jp2",
-                    "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B08",
-                    "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/B08.jp2",
+                    "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_"
+                                 "R102_V20151207T003302_20151207T003302_tile_"
+                                 "14_band_B08.jp2",
+                    "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102"
+                                "_V20151207T003302_20151207T003302_tile_14_"
+                                "band_B08",
+                    "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/"
+                                  "tiles/57/V/XE/2015/12/7/0/B08.jp2",
                 },
-                "info": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/tileInfo.json",
-                "metadata": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/metadata.xml",
-                "preview": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/preview.jpg",
+                "info": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/"
+                        "XE/2015/12/7/0/tileInfo.json",
+                "metadata": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/"
+                            "57/V/XE/2015/12/7/0/metadata.xml",
+                "preview": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/"
+                           "57/V/XE/2015/12/7/0/preview.jpg",
                 "timestamp": "2015-12-07T00:33:02.634Z",
-                "url": "http://sentinel-s2-l1c.s3-website.eu-central-1.amazonaws.com/#tiles/57/V/XE/2015/12/7/0/",
+                "url": "http://sentinel-s2-l1c.s3-website.eu-central-1."
+                       "amazonaws.com/#tiles/57/V/XE/2015/12/7/0/",
             }
         ],
     }
@@ -154,24 +186,39 @@ class Sentinel2ASceneList(Schema):
     }
     example = [
         {
-            "product_id": "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_20170202T090155",
+            "product_id": "S2A_MSIL1C_20170202T090201_N0204_R007_T36TVT_"
+                          "20170202T090155",
             "tiles": [
                 {
                     "B04": {
-                        "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B04.jp2",
-                        "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B04",
-                        "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/B04.jp2",
+                        "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157"
+                                     "_R102_V20151207T003302_20151207T003302_"
+                                     "tile_14_band_B04.jp2",
+                        "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_"
+                                    "R102_V20151207T003302_20151207T003302_"
+                                    "tile_14_band_B04",
+                        "public_url": "http://sentinel-s2-l1c.s3.amazonaws."
+                                      "com/tiles/57/V/XE/2015/12/7/0/B04.jp2",
                     },
                     "B08": {
-                        "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B08.jp2",
-                        "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157_R102_V20151207T003302_20151207T003302_tile_14_band_B08",
-                        "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/B08.jp2",
+                        "file_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157"
+                                     "_R102_V20151207T003302_20151207T003302_"
+                                     "tile_14_band_B08.jp2",
+                        "map_name": "S2A_OPER_PRD_MSIL1C_PDMC_20151207T031157"
+                                    "_R102_V20151207T003302_20151207T003302_"
+                                    "tile_14_band_B08",
+                        "public_url": "http://sentinel-s2-l1c.s3.amazonaws.com"
+                                      "/tiles/57/V/XE/2015/12/7/0/B08.jp2",
                     },
-                    "info": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/tileInfo.json",
-                    "metadata": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/metadata.xml",
-                    "preview": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/V/XE/2015/12/7/0/preview.jpg",
+                    "info": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles/57/"
+                            "V/XE/2015/12/7/0/tileInfo.json",
+                    "metadata": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles"
+                                "/57/V/XE/2015/12/7/0/metadata.xml",
+                    "preview": "http://sentinel-s2-l1c.s3.amazonaws.com/tiles"
+                               "/57/V/XE/2015/12/7/0/preview.jpg",
                     "timestamp": "2015-12-07T00:33:02.634Z",
-                    "url": "http://sentinel-s2-l1c.s3-website.eu-central-1.amazonaws.com/#tiles/57/V/XE/2015/12/7/0/",
+                    "url": "http://sentinel-s2-l1c.s3-website.eu-central-1."
+                           "amazonaws.com/#tiles/57/V/XE/2015/12/7/0/",
                 }
             ],
         }
@@ -179,22 +226,26 @@ class Sentinel2ASceneList(Schema):
 
 
 class Sentinel2ASceneListModel(Schema):
-    """This schema defines the JSON input of the sentinel time series creator resource"""
+    """This schema defines the JSON input of the sentinel time series creator
+    resource
+    """
 
     type = "object"
     properties = {
         "bands": {
             "type": "array",
             "items": {"type": "string"},
-            "description": "A list of band names that should be downloaded and imported for each Sentinel-2 scene."
-            'Available are the following band names: "B01", "B02", "B03", "B04", "B05", "B06", "B07",'
-            '"B08", "B8A", "B09" "B10", "B11", "B12"',
+            "description": "A list of band names that should be downloaded "
+                           "and imported for each Sentinel-2 scene."
+            'Available are the following band names: "B01", "B02", "B03", '
+            '"B04", "B05", "B06", "B07", "B08", "B8A", "B09" "B10", "B11", '
+            '"B12"',
         },
         "product_ids": {
             "type": "array",
             "items": {"type": "string"},
-            "description": "A list of Sentinel-2 scene names of which the tile download urls "
-            "and metadata infor urls should be provided.",
+            "description": "A list of Sentinel-2 scene names of which the tile"
+            " download urls and metadata infor urls should be provided.",
         },
     }
     example = {
@@ -211,8 +262,8 @@ class Sentinel2ASceneListModel(Schema):
 
 SCHEMA_DOC = {
     "tags": ["Satellite Image Algorithms"],
-    "description": "Generate the download urls for a list of sentinel2A scenes and band numbers. "
-    "Minimum required user role: user.",
+    "description": "Generate the download urls for a list of sentinel2A scenes"
+    " and band numbers. Minimum required user role: user.",
     "consumes": ["application/json"],
     "parameters": [
         {
@@ -244,7 +295,9 @@ class AWSSentinel2ADownloadLinkQuery(ResourceBase):
 
     @swagger.doc(deepcopy(SCHEMA_DOC))
     def post(self):
-        """Generate the download urls for a list of sentinel2A scenes and band numbers."""
+        """Generate the download urls for a list of sentinel2A scenes and band
+        numbers.
+        """
 
         try:
             iface = AWSSentinel2AInterface(global_config)

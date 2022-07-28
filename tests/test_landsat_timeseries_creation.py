@@ -6,7 +6,7 @@ from flask.json import dumps as json_dump
 
 try:
     from .test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
-except:
+except Exception:
     from test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 
 
@@ -36,7 +36,8 @@ test_mapsets = ["A"]
 class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
     """test the download and creation of sentinel2 time series in a new mapset
 
-    TODO: Implement error tests for wrong scene ids and atmospheric correction methods
+    TODO: Implement error tests for wrong scene ids and atmospheric correction
+          methods
     """
 
     def check_remove_test_mapsets(self):
@@ -91,7 +92,6 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         """Test the import of two scenes with 2 bands in a new mapset A"""
         self.check_remove_test_mapsets()
 
-        ############################################################################
         rv = self.server.post(
             URL_PREFIX + "/locations/LL/mapsets/A/landsat_import",
             headers=self.admin_auth_header,
@@ -129,7 +129,6 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         """Test the import of two scenes with 2 bands in a new mapset A"""
         self.check_remove_test_mapsets()
 
-        ############################################################################
         rv = self.server.post(
             URL_PREFIX + "/locations/LL/mapsets/A/landsat_import",
             headers=self.admin_auth_header,

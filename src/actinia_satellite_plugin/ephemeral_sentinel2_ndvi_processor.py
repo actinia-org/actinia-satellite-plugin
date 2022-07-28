@@ -5,9 +5,10 @@ import tempfile
 from copy import deepcopy
 from flask import jsonify, make_response
 from flask_restful_swagger_2 import swagger
-from actinia_core.processing.actinia_processing.ephemeral.ephemeral_processing_with_export import (
-    EphemeralProcessingWithExport,
-)
+from actinia_core.processing.actinia_processing.ephemeral\
+    .ephemeral_processing_with_export import (
+        EphemeralProcessingWithExport,
+    )
 from actinia_core.rest.base.resource_base import ResourceBase
 from actinia_core.core.common.google_satellite_bigquery_interface import (
     GoogleSatelliteBigQueryInterface,
@@ -37,7 +38,8 @@ __email__ = "soerengebbert@googlemail.com"
 class SentinelNDVIResponseModel(ProcessingResponseModel):
     """The response of the Sentinel2A vegetation index computation
 
-    It is used as schema to define the *process_result* in a ProcessingResponseModel derivative.
+    It is used as schema to define the *process_result* in a
+    ProcessingResponseModel derivative.
     """
 
     type = "object"
@@ -52,8 +54,11 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
         "api_info": {
             "endpoint": "asyncephemeralsentinel2processingresource",
             "method": "POST",
-            "path": f"{URL_PREFIX}/sentinel2_process/ndvi/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749",
-            "request_url": f"http://localhost:8080{URL_PREFIX}/sentinel2_process/ndvi/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749",
+            "path": f"{URL_PREFIX}/sentinel2_process/ndvi/S2A_MSIL1C_20161206"
+            "T030112_N0204_R032_T50RKR_20161206T030749",
+            "request_url": f"http://localhost:8080{URL_PREFIX}/sentinel2_"
+            "process/ndvi/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_"
+            "20161206T030749",
         },
         "datetime": "2018-05-30 12:29:11.800608",
         "http_code": 200,
@@ -66,7 +71,9 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "module": "r.univar",
                     "outputs": {
                         "output": {
-                            "name": "/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36efd3f77bd1419/.tmp/tmp7il3n0jk.univar"
+                            "name": "/actinia/workspace/temp_db/gisdbase_"
+                                    "103a050c380e4f50b36efd3f77bd1419/.tmp/"
+                                    "tmp7il3n0jk.univar"
                         }
                     },
                 }
@@ -91,7 +98,10 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "-t5",
                     "-c",
                     "-q",
-                    "https://storage.googleapis.com/gcp-public-data-sentinel-2/tiles/50/R/KR/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749.SAFE/GRANULE/L1C_T50RKR_A007608_20161206T030749/IMG_DATA/T50RKR_20161206T030112_B08.jp2",
+                    "https://storage.googleapis.com/gcp-public-data-sentinel-2"
+                    "/tiles/50/R/KR/S2A_MSIL1C_20161206T030112_N0204_R032_"
+                    "T50RKR_20161206T030749.SAFE/GRANULE/L1C_T50RKR_A007608_"
+                    "20161206T030749/IMG_DATA/T50RKR_20161206T030112_B08.jp2",
                 ],
                 "return_code": 0,
                 "run_time": 49.85953092575073,
@@ -104,7 +114,10 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "-t5",
                     "-c",
                     "-q",
-                    "https://storage.googleapis.com/gcp-public-data-sentinel-2/tiles/50/R/KR/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749.SAFE/GRANULE/L1C_T50RKR_A007608_20161206T030749/IMG_DATA/T50RKR_20161206T030112_B04.jp2",
+                    "https://storage.googleapis.com/gcp-public-data-sentinel-2"
+                    "/tiles/50/R/KR/S2A_MSIL1C_20161206T030112_N0204_R032_T50"
+                    "RKR_20161206T030749.SAFE/GRANULE/L1C_T50RKR_A007608_2016"
+                    "1206T030749/IMG_DATA/T50RKR_20161206T030112_B04.jp2",
                 ],
                 "return_code": 0,
                 "run_time": 38.676433801651,
@@ -114,8 +127,11 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "/bin/mv",
                 "parameter": [
-                    "/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36efd3f77bd1419/.tmp/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749.gml",
-                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749.gml",
+                    "/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36ef"
+                    "d3f77bd1419/.tmp/S2A_MSIL1C_20161206T030112_N0204_R032_"
+                    "T50RKR_20161206T030749.gml",
+                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_"
+                    "20161206T030112_N0204_R032_T50RKR_20161206T030749.gml",
                 ],
                 "return_code": 0,
                 "run_time": 0.05118393898010254,
@@ -125,8 +141,10 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "/bin/mv",
                 "parameter": [
-                    "/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36efd3f77bd1419/.tmp/T50RKR_20161206T030112_B08.jp2",
-                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08",
+                    "/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36e"
+                    "fd3f77bd1419/.tmp/T50RKR_20161206T030112_B08.jp2",
+                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_"
+                    "20161206T030112_N0204_R032_T50RKR_20161206T030749_B08",
                 ],
                 "return_code": 0,
                 "run_time": 0.35857558250427246,
@@ -136,8 +154,10 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "/bin/mv",
                 "parameter": [
-                    "/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36efd3f77bd1419/.tmp/T50RKR_20161206T030112_B04.jp2",
-                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04",
+                    "/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36e"
+                    "fd3f77bd1419/.tmp/T50RKR_20161206T030112_B04.jp2",
+                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_"
+                    "20161206T030112_N0204_R032_T50RKR_20161206T030749_B04",
                 ],
                 "return_code": 0,
                 "run_time": 0.15271401405334473,
@@ -150,13 +170,17 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "/usr/local/bin/grass",
                     "-e",
                     "-c",
-                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08",
-                    "/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36efd3f77bd1419/sentinel2",
+                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_"
+                    "20161206T030112_N0204_R032_T50RKR_20161206T030749_B08",
+                    "/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36ef"
+                    "d3f77bd1419/sentinel2",
                 ],
                 "return_code": 0,
                 "run_time": 0.36118006706237793,
                 "stderr": [
-                    "Default locale settings are missing. GRASS running with C locale.WARNING: Searched for a web browser, but none found",
+                    "Default locale settings are missing. GRASS running with C"
+                    " locale.WARNING: Searched for a web browser, but none "
+                    "found",
                     "Creating new GRASS GIS location/mapset...",
                     "Cleaning up temporary files...",
                     "",
@@ -166,14 +190,18 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "v.import",
                 "parameter": [
-                    "input=/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749.gml",
-                    "output=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749",
+                    "input=/actinia/workspace/download_cache/superadmin/S2A_"
+                    "MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T0307"
+                    "49.gml",
+                    "output=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749",
                     "--q",
                 ],
                 "return_code": 0,
                 "run_time": 0.3551313877105713,
                 "stderr": [
-                    "WARNING: Projection of dataset does not appear to match current location.",
+                    "WARNING: Projection of dataset does not appear to match "
+                    "current location.",
                     "",
                     "Location PROJ_INFO is:",
                     "name: WGS 84 / UTM zone 50N",
@@ -192,7 +220,8 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "",
                     "ERROR: proj",
                     "",
-                    "WARNING: Width for column fid set to 255 (was not specified by OGR), some strings may be truncated!",
+                    "WARNING: Width for column fid set to 255 (was not "
+                    "specified by OGR), some strings may be truncated!",
                     "",
                 ],
                 "stdout": "",
@@ -200,7 +229,8 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "v.timestamp",
                 "parameter": [
-                    "map=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749",
+                    "map=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_"
+                    "20161206T030749",
                     "date=06 dec 2016 03:07:49",
                 ],
                 "return_code": 0,
@@ -220,13 +250,16 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "vrt",
                     "-projwin_srs",
                     "EPSG:4326",
-                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08",
-                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08.vrt",
+                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_"
+                    "20161206T030112_N0204_R032_T50RKR_20161206T030749_B08",
+                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_2"
+                    "0161206T030112_N0204_R032_T50RKR_20161206T030749_B08.vrt",
                 ],
                 "return_code": 0,
                 "run_time": 0.05114293098449707,
                 "stderr": [
-                    "Warning 1: Computed -srcwin 5 -225 10971 11419 falls partially outside raster extent. Going on however.",
+                    "Warning 1: Computed -srcwin 5 -225 10971 11419 falls "
+                    "partially outside raster extent. Going on however.",
                     "",
                 ],
                 "stdout": "Input file size is 10980, 10980\n",
@@ -234,8 +267,11 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "r.import",
                 "parameter": [
-                    "input=/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08.vrt",
-                    "output=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08_uncropped",
+                    "input=/actinia/workspace/download_cache/superadmin/S2A_"
+                    "MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_"
+                    "B08.vrt",
+                    "output=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749_B08_uncropped",
                     "--q",
                 ],
                 "return_code": 0,
@@ -246,19 +282,24 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "g.region",
                 "parameter": [
-                    "align=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08_uncropped",
-                    "vector=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749",
+                    "align=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749_B08_uncropped",
+                    "vector=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749",
                     "-g",
                 ],
                 "return_code": 0,
                 "run_time": 0.10460591316223145,
                 "stderr": [""],
-                "stdout": "projection=1\nzone=50\nn=3100030\ns=2990100\nw=199960\ne=309790\nnsres=10\newres=10\nrows=10993\ncols=10983\ncells=120736119\n",
+                "stdout": "projection=1\nzone=50\nn=3100030\ns=2990100\nw="
+                "199960\ne=309790\nnsres=10\newres=10\nrows=10993\ncols=10983"
+                "\ncells=120736119\n",
             },
             {
                 "executable": "r.mask",
                 "parameter": [
-                    "vector=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749"
+                    "vector=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749"
                 ],
                 "return_code": 0,
                 "run_time": 7.36047887802124,
@@ -266,12 +307,18 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "Reading areas...",
                     "0..100",
                     "Writing raster map...",
-                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42..45..48..51..54..57..60..63..66..69..72..75..78..81..84..87..90..93..96..99..100",
+                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42.."
+                    "45..48..51..54..57..60..63..66..69..72..75..78..81..84.."
+                    "87..90..93..96..99..100",
                     "Reading areas...",
                     "0..100",
                     "Writing raster map...",
-                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42..45..48..51..54..57..60..63..66..69..72..75..78..81..84..87..90..93..96..99..100",
-                    "All subsequent raster operations will be limited to the MASK area. Removing or renaming raster map named 'MASK' will restore raster operations to normal.",
+                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42.."
+                    "45..48..51..54..57..60..63..66..69..72..75..78..81..84.."
+                    "87..90..93..96..99..100",
+                    "All subsequent raster operations will be limited to the "
+                    "MASK area. Removing or renaming raster map named 'MASK' "
+                    "will restore raster operations to normal.",
                     "",
                 ],
                 "stdout": "",
@@ -279,7 +326,9 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "r.mapcalc",
                 "parameter": [
-                    "expression=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08 = float(S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08_uncropped)"
+                    "expression=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_"
+                    "20161206T030749_B08 = float(S2A_MSIL1C_20161206T030112_"
+                    "N0204_R032_T50RKR_20161206T030749_B08_uncropped)"
                 ],
                 "return_code": 0,
                 "run_time": 10.695591926574707,
@@ -289,7 +338,8 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "r.timestamp",
                 "parameter": [
-                    "map=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08",
+                    "map=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_201612"
+                    "06T030749_B08",
                     "date=06 dec 2016 03:07:49",
                 ],
                 "return_code": 0,
@@ -301,13 +351,15 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                 "executable": "g.remove",
                 "parameter": [
                     "type=raster",
-                    "name=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08_uncropped",
+                    "name=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_201612"
+                    "06T030749_B08_uncropped",
                     "-f",
                 ],
                 "return_code": 0,
                 "run_time": 0.050362348556518555,
                 "stderr": [
-                    "Removing raster <S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08_uncropped>",
+                    "Removing raster <S2A_MSIL1C_20161206T030112_N0204_R032_"
+                    "T50RKR_20161206T030749_B08_uncropped>",
                     "",
                 ],
                 "stdout": "",
@@ -332,13 +384,16 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "vrt",
                     "-projwin_srs",
                     "EPSG:4326",
-                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04",
-                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04.vrt",
+                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_"
+                    "20161206T030112_N0204_R032_T50RKR_20161206T030749_B04",
+                    "/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_2"
+                    "0161206T030112_N0204_R032_T50RKR_20161206T030749_B04.vrt",
                 ],
                 "return_code": 0,
                 "run_time": 0.05096769332885742,
                 "stderr": [
-                    "Warning 1: Computed -srcwin 5 -225 10971 11419 falls partially outside raster extent. Going on however.",
+                    "Warning 1: Computed -srcwin 5 -225 10971 11419 falls "
+                    "partially outside raster extent. Going on however.",
                     "",
                 ],
                 "stdout": "Input file size is 10980, 10980\n",
@@ -346,8 +401,11 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "r.import",
                 "parameter": [
-                    "input=/actinia/workspace/download_cache/superadmin/S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04.vrt",
-                    "output=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04_uncropped",
+                    "input=/actinia/workspace/download_cache/superadmin/S2A_"
+                    "MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749"
+                    "_B04.vrt",
+                    "output=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749_B04_uncropped",
                     "--q",
                 ],
                 "return_code": 0,
@@ -358,19 +416,24 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "g.region",
                 "parameter": [
-                    "align=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04_uncropped",
-                    "vector=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749",
+                    "align=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749_B04_uncropped",
+                    "vector=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749",
                     "-g",
                 ],
                 "return_code": 0,
                 "run_time": 0.0505826473236084,
                 "stderr": [""],
-                "stdout": "projection=1\nzone=50\nn=3100030\ns=2990100\nw=199960\ne=309790\nnsres=10\newres=10\nrows=10993\ncols=10983\ncells=120736119\n",
+                "stdout": "projection=1\nzone=50\nn=3100030\ns=2990100\nw="
+                "199960\ne=309790\nnsres=10\newres=10\nrows=10993\ncols="
+                "10983\ncells=120736119\n",
             },
             {
                 "executable": "r.mask",
                 "parameter": [
-                    "vector=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749"
+                    "vector=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749"
                 ],
                 "return_code": 0,
                 "run_time": 6.779608249664307,
@@ -378,12 +441,18 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "Reading areas...",
                     "0..100",
                     "Writing raster map...",
-                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42..45..48..51..54..57..60..63..66..69..72..75..78..81..84..87..90..93..96..99..100",
+                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42.."
+                    "45..48..51..54..57..60..63..66..69..72..75..78..81..84.."
+                    "87..90..93..96..99..100",
                     "Reading areas...",
                     "0..100",
                     "Writing raster map...",
-                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42..45..48..51..54..57..60..63..66..69..72..75..78..81..84..87..90..93..96..99..100",
-                    "All subsequent raster operations will be limited to the MASK area. Removing or renaming raster map named 'MASK' will restore raster operations to normal.",
+                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42.."
+                    "45..48..51..54..57..60..63..66..69..72..75..78..81..84.."
+                    "87..90..93..96..99..100",
+                    "All subsequent raster operations will be limited to the "
+                    "MASK area. Removing or renaming raster map named 'MASK' "
+                    "will restore raster operations to normal.",
                     "",
                 ],
                 "stdout": "",
@@ -391,7 +460,9 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "r.mapcalc",
                 "parameter": [
-                    "expression=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04 = float(S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04_uncropped)"
+                    "expression=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_"
+                    "20161206T030749_B04 = float(S2A_MSIL1C_20161206T030112_"
+                    "N0204_R032_T50RKR_20161206T030749_B04_uncropped)"
                 ],
                 "return_code": 0,
                 "run_time": 10.141529321670532,
@@ -401,7 +472,8 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "r.timestamp",
                 "parameter": [
-                    "map=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04",
+                    "map=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749_B04",
                     "date=06 dec 2016 03:07:49",
                 ],
                 "return_code": 0,
@@ -413,13 +485,15 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                 "executable": "g.remove",
                 "parameter": [
                     "type=raster",
-                    "name=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04_uncropped",
+                    "name=S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_2016"
+                    "1206T030749_B04_uncropped",
                     "-f",
                 ],
                 "return_code": 0,
                 "run_time": 0.05098080635070801,
                 "stderr": [
-                    "Removing raster <S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04_uncropped>",
+                    "Removing raster <S2A_MSIL1C_20161206T030112_N0204_R032_"
+                    "T50RKR_20161206T030749_B04_uncropped>",
                     "",
                 ],
                 "stdout": "",
@@ -435,7 +509,12 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
             {
                 "executable": "r.mapcalc",
                 "parameter": [
-                    "expression=ndvi = (float(S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08) - float(S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04))/(float(S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B08) + float(S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04))"
+                    "expression=ndvi = (float(S2A_MSIL1C_20161206T030112_"
+                    "N0204_R032_T50RKR_20161206T030749_B08) - float(S2A_MSIL1C"
+                    "_20161206T030112_N0204_R032_T50RKR_20161206T030749_B04))"
+                    "/(float(S2A_MSIL1C_20161206T030112_N0204_R032_T50RKR_"
+                    "20161206T030749_B08) + float(S2A_MSIL1C_20161206T030112"
+                    "_N0204_R032_T50RKR_20161206T030749_B04))"
                 ],
                 "return_code": 0,
                 "run_time": 20.28681755065918,
@@ -457,7 +536,8 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                 "executable": "r.univar",
                 "parameter": [
                     "map=ndvi",
-                    "output=/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36efd3f77bd1419/.tmp/tmp7il3n0jk.univar",
+                    "output=/actinia/workspace/temp_db/gisdbase_103a050c380e4f"
+                    "50b36efd3f77bd1419/.tmp/tmp7il3n0jk.univar",
                     "-g",
                 ],
                 "return_code": 0,
@@ -471,7 +551,9 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                 "return_code": 0,
                 "run_time": 2.0198700428009033,
                 "stderr": [
-                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42..45..48..51..54..57..60..63..66..69..72..75..78..81..84..87..90..93..96..99..100",
+                    "0..3..6..9..12..15..18..21..24..27..30..33..36..39..42.."
+                    "45..48..51..54..57..60..63..66..69..72..75..78..81..84.."
+                    "87..90..93..96..99..100",
                     "",
                 ],
                 "stdout": "",
@@ -498,7 +580,9 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                 "return_code": 0,
                 "run_time": 0.051720619201660156,
                 "stderr": [""],
-                "stdout": "projection=1\nzone=50\nn=3100030\ns=2990100\nw=199960\ne=309790\nnsres=10\newres=10\nrows=10993\ncols=10983\ncells=120736119\n",
+                "stdout": "projection=1\nzone=50\nn=3100030\ns=2990100\nw=1999"
+                "60\ne=309790\nnsres=10\newres=10\nrows=10993\ncols=10983\n"
+                "cells=120736119\n",
             },
             {
                 "executable": "r.out.gdal",
@@ -507,19 +591,30 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "input=ndvi",
                     "format=GTiff",
                     "createopt=COMPRESS=LZW",
-                    "output=/actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36efd3f77bd1419/.tmp/ndvi.tiff",
+                    "output=/actinia/workspace/temp_db/gisdbase_103a050c380e4f"
+                    "50b36efd3f77bd1419/.tmp/ndvi.tiff",
                 ],
                 "return_code": 0,
                 "run_time": 12.550397157669067,
                 "stderr": [
                     "Checking GDAL data type and nodata value...",
-                    "2..5..8..11..14..17..20..23..26..29..32..35..38..41..44..47..50..53..56..59..62..65..68..71..74..77..80..83..86..89..92..95..98..100",
+                    "2..5..8..11..14..17..20..23..26..29..32..35..38..41..44.."
+                    "47..50..53..56..59..62..65..68..71..74..77..80..83..86.."
+                    "89..92..95..98..100",
                     "Using GDAL data type <Float32>",
-                    "Input raster map contains cells with NULL-value (no-data). The value -nan will be used to represent no-data values in the input map. You can specify a nodata value with the nodata option.",
+                    "Input raster map contains cells with NULL-value (no-data)"
+                    ". The value -nan will be used to represent no-data values"
+                    " in the input map. You can specify a nodata value with "
+                    "the nodata option.",
                     "Exporting raster data to GTiff format...",
-                    "ERROR 6: SetColorTable() only supported for Byte or UInt16 bands in TIFF format.",
-                    "2..5..8..11..14..17..20..23..26..29..32..35..38..41..44..47..50..53..56..59..62..65..68..71..74..77..80..83..86..89..92..95..98..100",
-                    "r.out.gdal complete. File </actinia/workspace/temp_db/gisdbase_103a050c380e4f50b36efd3f77bd1419/.tmp/ndvi.tiff> created.",
+                    "ERROR 6: SetColorTable() only supported for Byte or "
+                    "UInt16 bands in TIFF format.",
+                    "2..5..8..11..14..17..20..23..26..29..32..35..38..41..44."
+                    ".47..50..53..56..59..62..65..68..71..74..77..80..83..86."
+                    ".89..92..95..98..100",
+                    "r.out.gdal complete. File </actinia/workspace/temp_db/gis"
+                    "dbase_103a050c380e4f50b36efd3f77bd1419/.tmp/ndvi.tiff> "
+                    "created.",
                     "",
                 ],
                 "stdout": "",
@@ -549,10 +644,14 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
         "timestamp": 1527683351.8002071,
         "urls": {
             "resources": [
-                f"http://localhost:8080{URL_PREFIX}/resource/superadmin/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce/tmpsaeegg0q.png",
-                f"http://localhost:8080{URL_PREFIX}/resource/superadmin/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce/ndvi.tiff",
+                f"http://localhost:8080{URL_PREFIX}/resource/superadmin/"
+                "resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce/"
+                "tmpsaeegg0q.png",
+                f"http://localhost:8080{URL_PREFIX}/resource/superadmin/"
+                "resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce/ndvi.tiff",
             ],
-            "status": f"http://localhost:8080{URL_PREFIX}/resources/superadmin/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce",
+            "status": f"http://localhost:8080{URL_PREFIX}/resources/superadmin"
+            "/resource_id-6b849585-576f-40b5-a514-34a7cf1f97ce",
         },
         "user_id": "superadmin",
     }
@@ -562,10 +661,12 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
 SWAGGER_DOC = {
     "tags": ["Satellite Image Algorithms"],
     "description": "NDVI computation of an arbitrary Sentinel-2 scene."
-    "The processing is as follows: A user specific Sentinel-2 scene (Bands 04 and 08)"
+    "The processing is as follows: A user specific Sentinel-2 scene (Bands "
+    "04 and 08)"
     "will be download and imported into an ephemeral database.. "
     "The NDVI will be computed via r.mapcalc. "
-    "The result of the computation is available as gzipped geotiff file. In addition, "
+    "The result of the computation is available as gzipped geotiff file. "
+    "In addition, "
     "the univariate statistic will be computed "
     "as well as a preview image including a legend and scale."
     " Minimum required user role: user.",
@@ -576,7 +677,8 @@ SWAGGER_DOC = {
             "required": True,
             "in": "path",
             "type": "string",
-            "default": "S2A_MSIL1C_20170212T104141_N0204_R008_T31TGJ_20170212T104138",
+            "default": "S2A_MSIL1C_20170212T104141_N0204_R008_T31TGJ_2017021"
+            "2T104138",
         }
     ],
     "responses": {
@@ -586,7 +688,8 @@ SWAGGER_DOC = {
             "schema": SentinelNDVIResponseModel,
         },
         "400": {
-            "description": "The error message and a detailed log why NDVI processing of "
+            "description": "The error message and a detailed log why NDVI "
+            "processing of "
             "a sentinel2 scene did not succeeded",
             "schema": ProcessingErrorResponseModel,
         },
@@ -611,8 +714,8 @@ def extract_sensor_id_from_scene_id(scene_id):
 class AsyncEphemeralSentinel2ProcessingResource(ResourceBase):
     """
     This class represents a resource that runs asynchronous processing tasks
-    to download and process Sentinel-2 satellite images in an ephemeral GRASS location
-    and stores the result in a network storage like GlusterFS or NFS
+    to download and process Sentinel-2 satellite images in an ephemeral GRASS
+    location and stores the result in a network storage like GlusterFS or NFS
     """
 
     decorators = [log_api_call, auth.login_required]
@@ -636,8 +739,8 @@ class AsyncEphemeralSentinel2ProcessingResource(ResourceBase):
 class AsyncEphemeralSentinel2ProcessingResourceGCS(ResourceBase):
     """
     This class represents a resource that runs asynchronous processing tasks
-    to download and process Sentinel-2 satellite images in an ephemeral GRASS location
-    and uploads the result to a google cloud storage bucket.
+    to download and process Sentinel-2 satellite images in an ephemeral GRASS
+    location and uploads the result to a google cloud storage bucket.
     """
 
     decorators = [log_api_call, auth.login_required]
@@ -648,7 +751,10 @@ class AsyncEphemeralSentinel2ProcessingResourceGCS(ResourceBase):
 
     @swagger.doc(deepcopy(SWAGGER_DOC))
     def post(self, product_id):
-        """NDVI computation of an arbitrary Sentinel-2 scene. The results are stored in the Google Cloud Storage."""
+        """
+        NDVI computation of an arbitrary Sentinel-2 scene. The results are
+        stored in the Google Cloud Storage.
+        """
         rdc = self.preprocess(has_json=False, location_name="sentinel2")
         rdc.set_user_data(product_id)
         rdc.set_storage_model_to_gcs()
@@ -671,7 +777,8 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         Setup the variables of this class
 
         Args:
-            rdc (ResourceDataContainer): The data container that contains all required variables for processing
+            rdc (ResourceDataContainer): The data container that contains all
+                                         required variables for processing
 
         """
         EphemeralProcessingWithExport.__init__(self, rdc)
@@ -684,26 +791,32 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         self.user_download_cache_path = os.path.join(
             self.config.DOWNLOAD_CACHE, self.user_id
         )
+        # The raster layer names which must be exported, stats computed
+        # and preview image created
         self.raster_result_list = (
             []
-        )  # The raster layer names which must be exported, stats computed
-        # and preview image created
+        )
+        # A list of r.univar output classes for each vegetation index
         self.module_results = (
             []
-        )  # A list of r.univar output classes for each vegetation index
-        self.response_model_class = SentinelNDVIResponseModel  # The class that is used to create the response
+        )
+        # The class that is used to create the response
+        self.response_model_class = SentinelNDVIResponseModel
+        # The Sentinel-2 bands that are required for NDVI processing
         self.required_bands = [
             "B08",
             "B04",
-        ]  # The Sentinel-2 bands that are required for NDVI processing
+        ]
         self.query_result = None
 
     def _prepare_sentinel2_download(self):
-        """Check the download cache if the file already exists, to avoid redundant downloads.
-        The downloaded files will be stored in a temporary directory. After the download of all files
-        completes, the downloaded files will be moved to the download cache. This avoids broken
-        files in case a download was interrupted or stopped by termination.
-
+        """
+        Check the download cache if the file already exists, to avoid
+        redundant downloads.
+        The downloaded files will be stored in a temporary directory.
+        After the download of all files completes, the downloaded files will
+        be moved to the download cache. This avoids broken files in case a
+        download was interrupted or stopped by termination.
         """
         # Create the download cache directory if it does not exists
         if os.path.exists(self.config.DOWNLOAD_CACHE):
@@ -711,7 +824,8 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         else:
             os.mkdir(self.config.DOWNLOAD_CACHE)
 
-        # Create the user specific download cache directory to put the downloaded files into it
+        # Create the user specific download cache directory to put the
+        # downloaded files into it
         if os.path.exists(self.user_download_cache_path):
             pass
         else:
@@ -744,7 +858,9 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
             )
 
     def _create_temp_database(self, mapsets=[]):
-        """Create a temporary gis database and location with a PERMANENT mapset for processing
+        """
+        Create a temporary gis database and location with a PERMANENT mapset
+        for processing
 
         Raises:
             This function raises AsyncProcessError in case of an error.
@@ -752,7 +868,8 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         """
         if not self.sentinel2_band_file_list:
             raise AsyncProcessError(
-                "Unable to create a temporary GIS database, no data is available"
+                "Unable to create a temporary GIS database, no data is "
+                "available"
             )
 
         try:
@@ -786,12 +903,13 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
                 executable_params=executable_params,
             )
 
-            # Create the GRASS location, this will create the location and mapset paths
+            # Create the GRASS location, this will create the location and
+            # mapset paths
             self._run_process(p)
         except Exception as e:
             raise AsyncProcessError(
-                "Unable to create a temporary GIS database and location at <%s>"
-                ", Exception: %s"
+                "Unable to create a temporary GIS database and location at "
+                "<%s>, Exception: %s"
                 % (
                     os.path.join(
                         self.temp_grass_data_base,
@@ -841,7 +959,8 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
          process chain entry to setup the extent from the options.
 
         Args:
-            options: The parser options that contain n, s, e and w entries for region settings
+            options: The parser options that contain n, s, e and w entries for
+                     region settings
             result_file: The resulting PNG file name
 
         Returns:
@@ -899,7 +1018,9 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         self.resource_url_list.append(resource_url)
 
     def _create_output_resources(self, raster_result_list):
-        """Create the output resources from the raster layer that are the result of the processing
+        """
+        Create the output resources from the raster layer that are the
+        result of the processing
 
         The following resources will be computed
 
@@ -993,7 +1114,9 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         self._create_output_resources(self.raster_result_list)
 
     def _final_cleanup(self):
-        """Overwrite this function in subclasses to perform the final cleanup"""
+        """
+        Overwrite this function in subclasses to perform the final cleanup
+        """
         # Clean up and remove the temporary gisdbase
         self._cleanup()
         # Remove resource directories
