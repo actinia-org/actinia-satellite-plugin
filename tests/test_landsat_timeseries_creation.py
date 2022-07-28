@@ -3,6 +3,7 @@ import unittest
 from pprint import pprint
 from flask.json import loads as json_load
 from flask.json import dumps as json_dump
+
 try:
     from .test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 except:
@@ -10,21 +11,24 @@ except:
 
 
 __license__ = "GPLv3"
-__author__     = "Sören Gebbert"
-__copyright__  = "Copyright 2016, Sören Gebbert"
+__author__ = "Sören Gebbert"
+__copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Soeren Gebbert"
-__email__      = "soerengebbert@googlemail.com"
+__email__ = "soerengebbert@googlemail.com"
 
 # Module change example for r.slope.aspect with g.region adjustment
 
-SCENE_IDS = {"strds":"Landsat_4",
-             "atcor_method": "TOAR",
-             "scene_ids":["LT41970251990147XXX03"]}
+SCENE_IDS = {
+    "strds": "Landsat_4",
+    "atcor_method": "TOAR",
+    "scene_ids": ["LT41970251990147XXX03"],
+}
 
-WRONG_SCENE_IDS = {"strds":"Landsat_4",
-                   "atcor_method": "TOAR",
-                   "scene_ids":["LT41970251990147XXX00",
-                                "LT41970251990147XXX01"]}
+WRONG_SCENE_IDS = {
+    "strds": "Landsat_4",
+    "atcor_method": "TOAR",
+    "scene_ids": ["LT41970251990147XXX00", "LT41970251990147XXX01"],
+}
 
 test_mapsets = ["A"]
 
@@ -42,45 +46,75 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
 
         """
 
-        rv = self.server.get(URL_PREFIX + '/locations/LL/mapsets',
-                             headers=self.admin_auth_header)
+        rv = self.server.get(
+            URL_PREFIX + "/locations/LL/mapsets",
+            headers=self.admin_auth_header,
+        )
         pprint(json_load(rv.data))
-        self.assertEqual(rv.status_code, 200, "HTML status code is wrong %i"%rv.status_code)
-        self.assertEqual(rv.mimetype, "application/json", "Wrong mimetype %s"%rv.mimetype)
+        self.assertEqual(
+            rv.status_code,
+            200,
+            "HTML status code is wrong %i" % rv.status_code,
+        )
+        self.assertEqual(
+            rv.mimetype, "application/json", "Wrong mimetype %s" % rv.mimetype
+        )
 
         mapsets = json_load(rv.data)["process_results"]
 
         for mapset in test_mapsets:
             if mapset in mapsets:
                 # Unlock mapset for deletion
-                rv = self.server.post(URL_PREFIX + '/locations/LL/mapsets/%s' % mapset,
-                                      headers=self.admin_auth_header)
+                rv = self.server.post(
+                    URL_PREFIX + "/locations/LL/mapsets/%s" % mapset,
+                    headers=self.admin_auth_header,
+                )
                 pprint(json_load(rv.data))
                 # Delete the mapset if it already exists
-                rv = self.server.delete(URL_PREFIX + '/locations/LL/mapsets/%s' % mapset,
-                                        headers=self.admin_auth_header)
+                rv = self.server.delete(
+                    URL_PREFIX + "/locations/LL/mapsets/%s" % mapset,
+                    headers=self.admin_auth_header,
+                )
                 pprint(json_load(rv.data))
-                self.assertEqual(rv.status_code, 200, "HTML status code is wrong %i"%rv.status_code)
-                self.assertEqual(rv.mimetype, "application/json", "Wrong mimetype %s"%rv.mimetype)
+                self.assertEqual(
+                    rv.status_code,
+                    200,
+                    "HTML status code is wrong %i" % rv.status_code,
+                )
+                self.assertEqual(
+                    rv.mimetype,
+                    "application/json",
+                    "Wrong mimetype %s" % rv.mimetype,
+                )
 
     def test_1(self):
         """Test the import of two scenes with 2 bands in a new mapset A"""
         self.check_remove_test_mapsets()
 
         ############################################################################
-        rv = self.server.post(URL_PREFIX + '/locations/LL/mapsets/A/landsat_import',
-                              headers=self.admin_auth_header,
-                              data=json_dump(SCENE_IDS),
-                              content_type="application/json")
+        rv = self.server.post(
+            URL_PREFIX + "/locations/LL/mapsets/A/landsat_import",
+            headers=self.admin_auth_header,
+            data=json_dump(SCENE_IDS),
+            content_type="application/json",
+        )
 
         pprint(json_load(rv.data))
         self.waitAsyncStatusAssertHTTP(rv, headers=self.admin_auth_header)
 
-        rv = self.server.get(URL_PREFIX + '/locations/LL/mapsets/A/strds',
-                             headers=self.admin_auth_header)
+        rv = self.server.get(
+            URL_PREFIX + "/locations/LL/mapsets/A/strds",
+            headers=self.admin_auth_header,
+        )
         pprint(json_load(rv.data))
-        self.assertEqual(rv.status_code, 200, "HTML status code is wrong %i"%rv.status_code)
-        self.assertEqual(rv.mimetype, "application/json", "Wrong mimetype %s"%rv.mimetype)
+        self.assertEqual(
+            rv.status_code,
+            200,
+            "HTML status code is wrong %i" % rv.status_code,
+        )
+        self.assertEqual(
+            rv.mimetype, "application/json", "Wrong mimetype %s" % rv.mimetype
+        )
 
         strds_list = json_load(rv.data)["process_results"]
         self.assertTrue("Landsat_4_B1" in strds_list)
@@ -96,29 +130,40 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.check_remove_test_mapsets()
 
         ############################################################################
-        rv = self.server.post(URL_PREFIX + '/locations/LL/mapsets/A/landsat_import',
-                              headers=self.admin_auth_header,
-                              data=json_dump(WRONG_SCENE_IDS),
-                              content_type="application/json")
+        rv = self.server.post(
+            URL_PREFIX + "/locations/LL/mapsets/A/landsat_import",
+            headers=self.admin_auth_header,
+            data=json_dump(WRONG_SCENE_IDS),
+            content_type="application/json",
+        )
 
         pprint(json_load(rv.data))
-        self.waitAsyncStatusAssertHTTP(rv, headers=self.admin_auth_header,
-                                       http_status=400, status="error",
-                                       message_check="AsyncProcessError:")
+        self.waitAsyncStatusAssertHTTP(
+            rv,
+            headers=self.admin_auth_header,
+            http_status=400,
+            status="error",
+            message_check="AsyncProcessError:",
+        )
 
     def test_1_error_mapset_exists(self):
-        """PERMANENT mapset exists. hence an error message is expected
-        """
-        rv = self.server.post(URL_PREFIX + '/locations/LL/mapsets/PERMANENT/landsat_import',
-                              headers=self.admin_auth_header,
-                              data=json_dump(SCENE_IDS),
-                              content_type="application/json")
+        """PERMANENT mapset exists. hence an error message is expected"""
+        rv = self.server.post(
+            URL_PREFIX + "/locations/LL/mapsets/PERMANENT/landsat_import",
+            headers=self.admin_auth_header,
+            data=json_dump(SCENE_IDS),
+            content_type="application/json",
+        )
 
         pprint(json_load(rv.data))
-        self.waitAsyncStatusAssertHTTP(rv, headers=self.admin_auth_header,
-                                       http_status=400, status="error",
-                                       message_check="AsyncProcessError:")
+        self.waitAsyncStatusAssertHTTP(
+            rv,
+            headers=self.admin_auth_header,
+            http_status=400,
+            status="error",
+            message_check="AsyncProcessError:",
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

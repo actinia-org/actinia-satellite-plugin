@@ -12,26 +12,27 @@ from actinia_core.core.common.redis_interface import connect
 from actinia_core.core.common.process_queue import create_process_queue
 
 __license__ = "GPLv3"
-__author__     = "Sören Gebbert"
-__copyright__  = "Copyright 2016, Sören Gebbert"
+__author__ = "Sören Gebbert"
+__copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"
-__email__      = "soerengebbert@googlemail.com"
+__email__ = "soerengebbert@googlemail.com"
 
-if os.path.exists(DEFAULT_CONFIG_PATH) is True and os.path.isfile(DEFAULT_CONFIG_PATH):
+if os.path.exists(DEFAULT_CONFIG_PATH) is True and os.path.isfile(
+    DEFAULT_CONFIG_PATH
+):
     global_config.read(DEFAULT_CONFIG_PATH)
 
 # Create the endpoints based on the global config
 create_endpoints()
 
 # Connect the redis interfaces
-connect(global_config.REDIS_SERVER_URL,
-        global_config.REDIS_SERVER_PORT)
+connect(global_config.REDIS_SERVER_URL, global_config.REDIS_SERVER_PORT)
 
 # Create the process queue
 create_process_queue(global_config)
 
 
 ########################################################################################################################
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Connect to the database
-    flask_app.run(host='0.0.0.0', port=8080, debug=True)
+    flask_app.run(host="0.0.0.0", port=8080, debug=True)
