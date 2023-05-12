@@ -1,4 +1,4 @@
-FROM alpine:3.11 as build
+FROM alpine:3.18 as build
 
 RUN apk add git python3
 RUN pip3 install --upgrade pip pep517 wheel
