@@ -26,7 +26,7 @@ from actinia_core.models.response_models import (
 from actinia_core.core.common.app import auth
 from actinia_core.core.common.api_logger import log_api_call
 from actinia_core.models.response_models import ProcessingErrorResponseModel
-from actinia_core.core.common.app import URL_PREFIX
+from actinia_api import URL_PREFIX
 
 __license__ = "GPLv3"
 __author__ = "Sören Gebbert"
