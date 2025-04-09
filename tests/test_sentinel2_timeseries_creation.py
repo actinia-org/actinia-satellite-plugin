@@ -179,7 +179,7 @@ class AsyncSentielTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         """
 
         rv = self.server.get(
-            URL_PREFIX + "/locations/LL/mapsets",
+            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets",
             headers=self.admin_auth_header,
         )
         pprint(json_load(rv.data))
@@ -198,13 +198,13 @@ class AsyncSentielTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
             if mapset in mapsets:
                 # Unlock mapset for deletion
                 rv = self.server.post(
-                    URL_PREFIX + "/locations/LL/mapsets/%s" % mapset,
+                    URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/%s" % mapset,
                     headers=self.admin_auth_header,
                 )
                 pprint(json_load(rv.data))
                 # Delete the mapset if it already exists
                 rv = self.server.delete(
-                    URL_PREFIX + "/locations/LL/mapsets/%s" % mapset,
+                    URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/%s" % mapset,
                     headers=self.admin_auth_header,
                 )
                 pprint(json_load(rv.data))
@@ -224,7 +224,7 @@ class AsyncSentielTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.check_remove_test_mapsets()
 
         rv = self.server.post(
-            URL_PREFIX + "/locations/LL/mapsets/A/sentinel2_import",
+            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/A/sentinel2_import",
             headers=self.admin_auth_header,
             data=json_dump(PRODUCT_IDS),
             content_type="application/json",
@@ -234,7 +234,7 @@ class AsyncSentielTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.waitAsyncStatusAssertHTTP(rv, headers=self.admin_auth_header)
 
         rv = self.server.get(
-            URL_PREFIX + "/locations/LL/mapsets/A/strds",
+            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/A/strds",
             headers=self.admin_auth_header,
         )
         pprint(json_load(rv.data))
@@ -254,7 +254,7 @@ class AsyncSentielTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
     def test_1_error_mapset_exists(self):
         """PERMANENT mapset exists. hence an error message is expected"""
         rv = self.server.post(
-            URL_PREFIX + "/locations/LL/mapsets/PERMANENT/sentinel2_import",
+            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/PERMANENT/sentinel2_import",
             headers=self.admin_auth_header,
             data=json_dump(PRODUCT_IDS),
             content_type="application/json",
@@ -278,7 +278,7 @@ class AsyncSentielTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.check_remove_test_mapsets()
 
         rv = self.server.post(
-            URL_PREFIX + "/locations/LL/mapsets/A/sentinel2_import",
+            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/A/sentinel2_import",
             headers=self.admin_auth_header,
             data=json_dump(WRONG_PRODUCT_IDS),
             content_type="application/json",
@@ -298,7 +298,7 @@ class AsyncSentielTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.check_remove_test_mapsets()
 
         rv = self.server.post(
-            URL_PREFIX + "/locations/LL/mapsets/A/sentinel2_import",
+            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/A/sentinel2_import",
             headers=self.admin_auth_header,
             data=json_dump(WRONG_BANDS_IDS),
             content_type="application/json",
@@ -318,7 +318,7 @@ class AsyncSentielTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.check_remove_test_mapsets()
 
         rv = self.server.post(
-            URL_PREFIX + "/locations/LL/mapsets/A/sentinel2_import",
+            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/A/sentinel2_import",
             headers=self.admin_auth_header,
             data=json_dump(PRODUCT_IDS_ONE_WRONG),
             content_type="application/json",

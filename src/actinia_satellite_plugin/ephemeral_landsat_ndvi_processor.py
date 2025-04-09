@@ -363,7 +363,7 @@ class LandsatNDVIResponseModel(ProcessingResponseModel):
           "stderr": [
             "Default locale settings are missing. GRASS running with C locale."
             "WARNING: Searched for a web browser, but none found",
-            "Creating new GRASS GIS location/mapset...",
+            "Creating new GRASS GIS project/mapset...",
             "Cleaning up temporary files...",
             ""
           ],
@@ -772,7 +772,7 @@ class AsyncEphemeralLandsatProcessingResource(ResourceBase):
     """
     This class represents a resource that runs asynchronous processing tasks
     to download and process Landsat TM satellite images in an ephemeral GRASS
-    location
+    project
     """
 
     decorators = [log_api_call, auth.login_required]
@@ -849,13 +849,13 @@ class AsyncEphemeralLandsatProcessingResource(ResourceBase):
         Landsat scene.
 
         This method will download a single Landsat scene with all bands,
-        create a temporary GRASS location and imports the data into it. Then
+        create a temporary GRASS project and imports the data into it. Then
         it will apply a TOAR or DOS4/1 atmospheric correction, depending on
         the users choice.
         The imported scenes are then processed via i.vi. The result is analyzed
         with r.univar and rendered via d.rast and d.legend. The preview image
-        and the resulting ndvi raster map are stored in the download location.
-        As download location are available:
+        and the resulting ndvi raster map are stored in the download project.
+        As download project are available:
             - local node storage
             - NFS/GlusterFS storage
             - Amazaon S3 storage
@@ -885,7 +885,7 @@ class AsyncEphemeralLandsatProcessingResource(ResourceBase):
                 "Available methods are: %s" % ",".join(supported_methods))
 
         # Preprocess the post call
-        rdc = self.preprocess(has_json=False, location_name="Landsat")
+        rdc = self.preprocess(has_json=False, project_name="Landsat")
         rdc.set_user_data((landsat_id, atcor_method, processing_method))
         # rdc.set_storage_model_to_gcs()
 
@@ -932,7 +932,7 @@ class EphemeralLandsatProcessing(EphemeralProcessingWithExport):
         self.response_model_class = LandsatNDVIResponseModel
 
     def _create_temp_database(self, mapsets=[]):
-        """Create a temporary gis database and location with a PERMANENT mapset
+        """Create a temporary gis database and project with a PERMANENT mapset
         for processing
 
         Raises:
@@ -946,7 +946,7 @@ class EphemeralLandsatProcessing(EphemeralProcessingWithExport):
 
         try:
             geofile = self.landsat_band_file_list[0]
-            # We have to set the home directory to create the grass location
+            # We have to set the home directory to create the grass project
             os.putenv("HOME", "/tmp")
 
             # Switch into the GRASS temporary database directory
@@ -958,7 +958,7 @@ class EphemeralLandsatProcessing(EphemeralProcessingWithExport):
             executable_params.append("-c")
             executable_params.append(geofile)
             executable_params.append(os.path.join(
-                self.temp_grass_data_base, self.location_name))
+                self.temp_grass_data_base, self.project_name))
 
             self.message_logger.info(
                 f"{self.config.GRASS_GIS_START_SCRIPT} {executable_params}")
@@ -969,17 +969,17 @@ class EphemeralLandsatProcessing(EphemeralProcessingWithExport):
                         executable="python3",
                         executable_params=executable_params)
 
-            # Create the GRASS location, this will create the location and
+            # Create the GRASS project, this will create the project and
             # mapset paths
             self._run_process(p)
         except Exception as e:
             raise AsyncProcessError(
-                "Unable to create a temporary GIS database and location at "
+                "Unable to create a temporary GIS database and project at "
                 "<%s>, Exception: %s"
                 % (
                     os.path.join(
                         self.temp_grass_data_base,
-                        self.location_name,
+                        self.project_name,
                         "PERMANENT",
                     ),
                     str(e),
@@ -1101,7 +1101,7 @@ class EphemeralLandsatProcessing(EphemeralProcessingWithExport):
             - Setup user credentials and working paths
             - Create the resource directory
             - Download and store the landsat scene files
-            - Initialize and create the temporal database and location
+            - Initialize and create the temporal database and project
             - Analyse the process chains
             - Run the modules
             - Export the results
