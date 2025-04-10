@@ -8,7 +8,7 @@ import os
 from src.actinia_satellite_plugin.endpoints import create_endpoints
 from actinia_core.core.common.app import flask_app
 from actinia_core.core.common.config import global_config, DEFAULT_CONFIG_PATH
-from actinia_core.core.common.redis_interface import connect
+from actinia_core.core.common.kvdb_interface import connect
 from actinia_core.core.common.process_queue import create_process_queue
 
 __license__ = "GPLv3"
@@ -25,8 +25,8 @@ if os.path.exists(DEFAULT_CONFIG_PATH) is True and os.path.isfile(
 # Create the endpoints based on the global config
 create_endpoints()
 
-# Connect the redis interfaces
-connect(global_config.REDIS_SERVER_URL, global_config.REDIS_SERVER_PORT)
+# Connect the kvdb interfaces
+connect(global_config.KVDB_SERVER_URL, global_config.KVDB_SERVER_PORT)
 
 # Create the process queue
 create_process_queue(global_config)

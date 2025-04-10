@@ -13,7 +13,7 @@ from actinia_core.rest.base.resource_base import ResourceBase
 from actinia_core.core.common.google_satellite_bigquery_interface import (
     GoogleSatelliteBigQueryInterface,
 )
-from actinia_core.core.common.redis_interface import enqueue_job
+from actinia_core.core.common.kvdb_interface import enqueue_job
 from actinia_core.core.common.sentinel_processing_library import (
     Sentinel2Processing,
 )
