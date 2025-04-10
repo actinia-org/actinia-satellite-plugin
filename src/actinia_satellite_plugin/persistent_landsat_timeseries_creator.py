@@ -86,8 +86,8 @@ SCHEMA_DOC = {
     "create a space-time raster dataset "
     "for each imported band. "
     "The resulting data will be located in a persistent user database. "
-    "The location name is part of the path and must exist. The mapset will "
-    "be created while importing and should not already exist in the location. "
+    "The project name is part of the path and must exist. The mapset will "
+    "be created while importing and should not already exist in the project. "
     "The names of the"
     "Landsat scenes that should be downloaded must be specified "
     "in the HTTP body as application/json content. In addition, the basename"
@@ -96,13 +96,13 @@ SCHEMA_DOC = {
     "strds will be cerated and the STRDS base name will be extended with the "
     "band number. This call is performed asynchronously. The provided resource"
     " URL must be pulled to receive the status of the import. The data is "
-    "available in the provided location/mapset, after the download and import"
+    "available in the provided project/mapset, after the download and import"
     " finished. Minimum required user role: user.",
     "consumes": ["application/json"],
     "parameters": [
         {
-            "name": "location_name",
-            "description": "The location name to import the Landsat scenes in",
+            "name": "project_name",
+            "description": "The project name to import the Landsat scenes in",
             "required": True,
             "in": "path",
             "type": "string",
@@ -143,13 +143,13 @@ class AsyncLandsatTimeSeriesCreatorResource(ResourceBase):
         ResourceBase.__init__(self)
 
     @swagger.doc(deepcopy(SCHEMA_DOC))
-    def post(self, location_name, mapset_name):
+    def post(self, project_name, mapset_name):
         """
         Download and import Landsat scenes into a new mapset and create a
         space time dataset for each imported band.
 
         Args:
-            location_name (str): The name of the location
+            project_name (str): The name of the project
             target_mapset_name (str): The name of the mapset that should be
                                       created
 
@@ -186,7 +186,7 @@ class AsyncLandsatTimeSeriesCreatorResource(ResourceBase):
         """
         # Preprocess the post call
         rdc = self.preprocess(
-            has_json=True, location_name=location_name, mapset_name=mapset_name
+            has_json=True, project_name=project_name, mapset_name=mapset_name
         )
 
         # RedisQueue approach
@@ -261,7 +261,7 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
         # Switch into the tempfile directory
         os.chdir(self.temp_file_path)
 
-        # We have to set the home directory to create the grass location
+        # We have to set the home directory to create the grass project
         os.putenv("HOME", "/tmp")
 
         sensor_ids = {}
@@ -479,5 +479,5 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
 
         self._import_scenes()
 
-        # Copy local mapset to original location
+        # Copy local mapset to original project
         self._copy_merge_tmp_mapset_to_target_mapset()
