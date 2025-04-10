@@ -48,7 +48,7 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         """
 
         rv = self.server.get(
-            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets",
+            f"{URL_PREFIX}/{self.project_url_part}/LL/mapsets",
             headers=self.admin_auth_header,
         )
         pprint(json_load(rv.data))
@@ -67,13 +67,15 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
             if mapset in mapsets:
                 # Unlock mapset for deletion
                 rv = self.server.post(
-                    URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/%s" % mapset,
+                    (f"{URL_PREFIX}/{self.project_url_part}/"
+                     f"LL/mapsets/{mapset}"),
                     headers=self.admin_auth_header,
                 )
                 pprint(json_load(rv.data))
                 # Delete the mapset if it already exists
                 rv = self.server.delete(
-                    URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/%s" % mapset,
+                    (f"{URL_PREFIX}/{self.project_url_part}/"
+                     f"LL/mapsets/{mapset}"),
                     headers=self.admin_auth_header,
                 )
                 pprint(json_load(rv.data))
@@ -93,7 +95,8 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.check_remove_test_mapsets()
 
         rv = self.server.post(
-            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/A/landsat_import",
+            (f"{URL_PREFIX}/{self.project_url_part}/"
+             f"LL/mapsets/A/landsat_import"),
             headers=self.admin_auth_header,
             data=json_dump(SCENE_IDS),
             content_type="application/json",
@@ -103,7 +106,8 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.waitAsyncStatusAssertHTTP(rv, headers=self.admin_auth_header)
 
         rv = self.server.get(
-            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/A/strds",
+            (f"{URL_PREFIX}/{self.project_url_part}/"
+             f"LL/mapsets/A/strds"),
             headers=self.admin_auth_header,
         )
         pprint(json_load(rv.data))
@@ -130,7 +134,8 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
         self.check_remove_test_mapsets()
 
         rv = self.server.post(
-            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/A/landsat_import",
+            (f"{URL_PREFIX}/{self.project_url_part}/"
+             f"LL/mapsets/A/landsat_import"),
             headers=self.admin_auth_header,
             data=json_dump(WRONG_SCENE_IDS),
             content_type="application/json",
@@ -148,7 +153,8 @@ class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
     def test_1_error_mapset_exists(self):
         """PERMANENT mapset exists. hence an error message is expected"""
         rv = self.server.post(
-            URL_PREFIX +  f"/{self.project_url_part}/LL/mapsets/PERMANENT/landsat_import",
+            (f"{URL_PREFIX}/{self.project_url_part}/"
+             "LL/mapsets/PERMANENT/landsat_import"),
             headers=self.admin_auth_header,
             data=json_dump(SCENE_IDS),
             content_type="application/json",

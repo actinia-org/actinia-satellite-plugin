@@ -55,6 +55,7 @@ def create_project_endpoints(flask_api, projects_url_part="projects"):
         ),
     )
 
+
 def create_endpoints(flask_api):
     flask_api.add_resource(LandsatQuery, "/landsat_query")
     flask_api.add_resource(Sentinel2Query, "/sentinel2_query")
