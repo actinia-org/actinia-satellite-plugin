@@ -9,6 +9,8 @@ try:
 except Exception:
     from test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 
+from actinia_core.version import init_versions, G_VERSION
+
 
 __license__ = "GPLv3"
 __author__ = "Sören Gebbert"
@@ -170,6 +172,15 @@ test_mapsets = ["A"]
 class AsyncSentielTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
     """Test the download and creation of sentinel2 time series in a new mapset
     """
+
+    project_url_part = "projects"
+
+    # set project_url_part to "locations" if GRASS GIS version < 8.4
+    init_versions()
+    grass_version_s = G_VERSION["version"]
+    grass_version = [int(item) for item in grass_version_s.split(".")[:2]]
+    if grass_version < [8, 4]:
+        project_url_part = "locations"
 
     def check_remove_test_mapsets(self):
         """
