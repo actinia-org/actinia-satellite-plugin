@@ -80,8 +80,8 @@ SCHEMA_DOC = {
     "and create a space-time raster dataset "
     "for each imported band. "
     "The resulting data will be located in a persistent user database. "
-    "The location name is part of the path and must exist. The mapset will "
-    "be created while importing and should not already exist in the location. "
+    "The project name is part of the path and must exist. The mapset will "
+    "be created while importing and should not already exist in the project. "
     "The names of the Sentinel-2 scenes and the band names that should"
     " be downloaded must be specified in the HTTP body as"
     " application/json content. In addition, the names of the "
@@ -90,13 +90,13 @@ SCHEMA_DOC = {
     "STRDS name must be provided. This call "
     "is performed asynchronously. The provided resource URL must be pulled "
     "to receive the status of the import. The data is available in the "
-    "provided location/mapset, after the download and import finished. "
+    "provided project/mapset, after the download and import finished. "
     "Minimum required user role: user.",
     "consumes": ["application/json"],
     "parameters": [
         {
-            "name": "location_name",
-            "description": "The location name to import the Sentinel2A scenes "
+            "name": "project_name",
+            "description": "The project name to import the Sentinel2A scenes "
                            "in",
             "required": True,
             "in": "path",
@@ -138,13 +138,13 @@ class AsyncSentinel2TimeSeriesCreatorResource(ResourceBase):
         ResourceBase.__init__(self)
 
     @swagger.doc(deepcopy(SCHEMA_DOC))
-    def post(self, location_name, mapset_name):
+    def post(self, project_name, mapset_name):
         """
         Download and import Sentinel2A scenes into a new mapset and create
         a space-time raster dataset for each imported band.
 
         Args:
-            location_name (str): The name of the location
+            project_name (str): The name of the project
             target_mapset_name (str): The name of the mapset that should be
                                       created
 
@@ -184,7 +184,7 @@ class AsyncSentinel2TimeSeriesCreatorResource(ResourceBase):
         """
         # Preprocess the post call
         rdc = self.preprocess(
-            has_json=True, location_name=location_name, mapset_name=mapset_name
+            has_json=True, project_name=project_name, mapset_name=mapset_name
         )
 
         # KvdbQueue approach
@@ -256,7 +256,7 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
         # Switch into the tempfile directory
         os.chdir(self.temp_file_path)
 
-        # We have to set the home directory to create the grass location
+        # We have to set the home directory to create the grass project
         os.putenv("HOME", "/tmp")
 
         self._send_resource_update("Sending Google BigQuery request.")
@@ -467,5 +467,5 @@ class AsyncSentinel2TimeSeriesCreator(PersistentProcessing):
 
         self._import_sentinel2_scenes()
 
-        # Copy local mapset to original location
+        # Copy local mapset to original project
         self._copy_merge_tmp_mapset_to_target_mapset()

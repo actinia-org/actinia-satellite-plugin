@@ -181,7 +181,7 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                     "Default locale settings are missing. GRASS running with C"
                     " locale.WARNING: Searched for a web browser, but none "
                     "found",
-                    "Creating new GRASS GIS location/mapset...",
+                    "Creating new GRASS GIS project/mapset...",
                     "Cleaning up temporary files...",
                     "",
                 ],
@@ -201,9 +201,9 @@ class SentinelNDVIResponseModel(ProcessingResponseModel):
                 "run_time": 0.3551313877105713,
                 "stderr": [
                     "WARNING: Projection of dataset does not appear to match "
-                    "current location.",
+                    "current project.",
                     "",
-                    "Location PROJ_INFO is:",
+                    "Project PROJ_INFO is:",
                     "name: WGS 84 / UTM zone 50N",
                     "datum: wgs84",
                     "ellps: wgs84",
@@ -715,7 +715,7 @@ class AsyncEphemeralSentinel2ProcessingResource(ResourceBase):
     """
     This class represents a resource that runs asynchronous processing tasks
     to download and process Sentinel-2 satellite images in an ephemeral GRASS
-    location and stores the result in a network storage like GlusterFS or NFS
+    project and stores the result in a network storage like GlusterFS or NFS
     """
 
     decorators = [log_api_call, auth.login_required]
@@ -728,7 +728,7 @@ class AsyncEphemeralSentinel2ProcessingResource(ResourceBase):
     def post(self, product_id):
         """NDVI computation of an arbitrary Sentinel-2 scene."""
 
-        rdc = self.preprocess(has_json=False, location_name="sentinel2")
+        rdc = self.preprocess(has_json=False, project_name="sentinel2")
         rdc.set_user_data(product_id)
 
         enqueue_job(self.job_timeout, start_job, rdc)
@@ -740,7 +740,7 @@ class AsyncEphemeralSentinel2ProcessingResourceGCS(ResourceBase):
     """
     This class represents a resource that runs asynchronous processing tasks
     to download and process Sentinel-2 satellite images in an ephemeral GRASS
-    location and uploads the result to a google cloud storage bucket.
+    project and uploads the result to a google cloud storage bucket.
     """
 
     decorators = [log_api_call, auth.login_required]
@@ -755,7 +755,7 @@ class AsyncEphemeralSentinel2ProcessingResourceGCS(ResourceBase):
         NDVI computation of an arbitrary Sentinel-2 scene. The results are
         stored in the Google Cloud Storage.
         """
-        rdc = self.preprocess(has_json=False, location_name="sentinel2")
+        rdc = self.preprocess(has_json=False, project_name="sentinel2")
         rdc.set_user_data(product_id)
         rdc.set_storage_model_to_gcs()
 
@@ -834,7 +834,7 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         # Switch into the tempfile directory
         os.chdir(self.temp_file_path)
 
-        # We have to set the home directory to create the grass location
+        # We have to set the home directory to create the grass project
         os.putenv("HOME", "/tmp")
 
         try:
@@ -859,7 +859,7 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
 
     def _create_temp_database(self, mapsets=[]):
         """
-        Create a temporary gis database and location with a PERMANENT mapset
+        Create a temporary gis database and project with a PERMANENT mapset
         for processing
 
         Raises:
@@ -875,7 +875,7 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         try:
             geofile = self.sentinel2_band_file_list[self.required_bands[0]][0]
             self._send_resource_update(geofile)
-            # We have to set the home directory to create the grass location
+            # We have to set the home directory to create the grass project
             os.putenv("HOME", "/tmp")
 
             # Switch into the GRASS temporary database directory
@@ -887,7 +887,7 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
             executable_params.append("-c")
             executable_params.append(geofile)
             executable_params.append(
-                os.path.join(self.temp_grass_data_base, self.location_name)
+                os.path.join(self.temp_grass_data_base, self.project_name)
             )
 
             self.message_logger.info(
@@ -903,17 +903,17 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
                 executable_params=executable_params,
             )
 
-            # Create the GRASS location, this will create the location and
+            # Create the GRASS project, this will create the project and
             # mapset paths
             self._run_process(p)
         except Exception as e:
             raise AsyncProcessError(
-                "Unable to create a temporary GIS database and location at "
+                "Unable to create a temporary GIS database and project at "
                 "<%s>, Exception: %s"
                 % (
                     os.path.join(
                         self.temp_grass_data_base,
-                        self.location_name,
+                        self.project_name,
                         "PERMANENT",
                     ),
                     str(e),
@@ -1052,7 +1052,7 @@ class EphemeralSentinelProcessing(EphemeralProcessingWithExport):
         - Setup user credentials and working paths
         - Create the resource directory
         - Download and store the sentinel2 scene files
-        - Initialize and create the temporal database and location
+        - Initialize and create the temporal database and project
         - Analyse the process chains
         - Run the modules
         - Export the results
