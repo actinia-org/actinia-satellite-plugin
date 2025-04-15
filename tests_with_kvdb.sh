@@ -26,7 +26,7 @@ fi
 
 TEST_RES=$?
 
-# stop redis server
+# stop kvdb server
 valkey-cli shutdown
 
 # # stop webhook server
