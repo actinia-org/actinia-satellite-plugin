@@ -19,4 +19,7 @@ dist:
 	python3 setup.py dist
 
 test:
-	python3 setup.py test
+	./tests_with_redis.sh
+
+devtest:
+	./tests_with_redis.sh dev
