@@ -1,0 +1,33 @@
+name: actinia plugin tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main, master ]
+
+jobs:
+
+  alpine-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      # with:
+      #   path: "."
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Replace run only unittest command
+      run: |
+        sed -i "s+# RUN make test+RUN make test+g" docker/actinia-plugin-tests/Dockerfile
+    - name: Tests of actinia_satellite_plugin
+      id: docker_build
+      uses: docker/build-push-action@v6
+      with:
+        push: false
+        tags: actinia-plugin-tests:alpine
+        context: .
+        file: docker/actinia-plugin-tests/Dockerfile
+        no-cache: true
+        # pull: true
