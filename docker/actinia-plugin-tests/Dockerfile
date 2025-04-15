@@ -9,7 +9,7 @@ ENV ACTINIA_CUSTOM_TEST_CFG /etc/default/actinia_test
 ENV DEFAULT_CONFIG_PATH /etc/default/actinia_test
 
 # install things only for tests
-RUN apk add redis
+RUN apk add valkey valkey-cli
 RUN pip3 install iniconfig colorlog pytest pytest-cov
 
 # # add data for tests
@@ -37,7 +37,7 @@ RUN pip3 install -r /src/requirements.txt
 RUN pip3 uninstall actinia_satellite_plugin -y
 COPY . /src/actinia_satellite_plugin
 WORKDIR /src/actinia_satellite_plugin
-RUN chmod a+x tests_with_redis.sh
+RUN chmod a+x tests_with_kvdb.sh
 
 RUN make install
 
