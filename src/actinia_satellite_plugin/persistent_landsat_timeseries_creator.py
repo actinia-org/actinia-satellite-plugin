@@ -16,7 +16,7 @@ from actinia_core.models.response_models import (
 from actinia_core.processing.actinia_processing.ephemeral\
     .persistent_processing import PersistentProcessing
 from actinia_core.rest.base.resource_base import ResourceBase
-from actinia_core.core.common.redis_interface import enqueue_job
+from actinia_core.core.common.kvdb_interface import enqueue_job
 from actinia_core.core.common.google_satellite_bigquery_interface import (
     GoogleSatelliteBigQueryInterface,
 )
@@ -189,7 +189,7 @@ class AsyncLandsatTimeSeriesCreatorResource(ResourceBase):
             has_json=True, project_name=project_name, mapset_name=mapset_name
         )
 
-        # RedisQueue approach
+        # KvdbQueue approach
         enqueue_job(self.job_timeout, start_job, rdc)
 
         html_code, response_model = pickle.loads(self.response_data)

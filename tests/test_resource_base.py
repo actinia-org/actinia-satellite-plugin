@@ -14,7 +14,7 @@ __copyright__ = "Copyright 2016-2019, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"
 __email__ = "soerengebbert@googlemail.com"
 
-redis_pid = None
+kvdb_pid = None
 server_test = False
 custom_actinia_cfg = False
 
@@ -31,10 +31,10 @@ if "ACTINIA_CUSTOM_TEST_CFG" in os.environ:
 
 
 def setup_environment():
-    global redis_pid
-    # Set the port to the test redis server
-    global_config.REDIS_SERVER_SERVER = "localhost"
-    global_config.REDIS_SERVER_PORT = 7000
+    global kvdb_pid
+    # Set the port to the test kvdb server
+    global_config.KVDB_SERVER_SERVER = "localhost"
+    global_config.KVDB_SERVER_PORT = 7000
 
     # home = os.getenv("HOME")
 
@@ -48,12 +48,12 @@ def setup_environment():
     global_config.GRASS_TMP_DATABASE = "/tmp"
 
     if server_test is False and custom_actinia_cfg is False:
-        # Start the redis server for user and logging management
-        redis_pid = os.spawnl(
+        # Start the kvdb server for user and logging management
+        kvdb_pid = os.spawnl(
             os.P_NOWAIT,
-            "/usr/bin/redis-server",
-            "common/redis.conf",
-            "--port %i" % global_config.REDIS_SERVER_PORT,
+            "/usr/bin/valkey-server",
+            "common/valkey.conf",
+            "--port %i" % global_config.KVDB_SERVER_PORT,
         )
         time.sleep(1)
 
@@ -61,16 +61,16 @@ def setup_environment():
         global_config.read(custom_actinia_cfg)
 
 
-def stop_redis():
+def stop_kvdb():
     if server_test is False:
-        global redis_pid
-        # Kill th redis server
-        if redis_pid is not None:
-            os.kill(redis_pid, signal.SIGTERM)
+        global kvdb_pid
+        # Kill th kvdb server
+        if kvdb_pid is not None:
+            os.kill(kvdb_pid, signal.SIGTERM)
 
 
-# Register the redis stop function
-atexit.register(stop_redis)
+# Register the kvdb stop function
+atexit.register(stop_kvdb)
 # Setup the environment
 setup_environment()
 
