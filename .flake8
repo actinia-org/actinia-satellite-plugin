@@ -1,0 +1,9 @@
+
+[flake8]
+
+# F401 'module' imported but unused
+
+exclude = .git,.pycache,build,.eggs
+
+per-file-ignores =
+    ./tests/test_resource_base.py: F401

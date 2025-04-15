@@ -1,6 +1,4 @@
-========================
-Actinia Satellite Plugin
-========================
+# Actinia Satellite Plugin
 
 This actinia plugin is designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes.
 It implements endpoints for on-the-fly NDVI computation and time series import for Landsat and Sentinel-2
@@ -18,8 +16,7 @@ Note:
     [1] https://github.com/mundialis/actinia_core
 
 
-Installation
-============
+## Installation
 
 The actinia plugin must be installed in the same environment as actinia core.
 Actinia core must be configured to load the installed plugin. When the plugin is
@@ -38,3 +35,14 @@ of actinia will be extended with the endpoints of the plugins.
 
 After installation set the plugin name in the actinia core configuration
 and restart the actinia core server.
+
+
+## Testing locally
+
+```
+docker build -f docker/actinia-plugin-tests/Dockerfile -t actinia-plugin-test .
+docker run -v </path/to/actinia_satellite_plugin/tests>:/src/actinia_satellite_plugin/tests -it actinia-plugin-test:latest -i
+
+# run tests with
+make test
+```
