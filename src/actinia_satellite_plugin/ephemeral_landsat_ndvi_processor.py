@@ -11,7 +11,7 @@ from flask_restful_swagger_2 import swagger
 from actinia_core.rest.base.resource_base import ResourceBase
 from actinia_core.processing.actinia_processing.ephemeral\
     .ephemeral_processing_with_export import EphemeralProcessingWithExport
-from actinia_core.core.common.redis_interface import enqueue_job
+from actinia_core.core.common.kvdb_interface import enqueue_job
 from actinia_core.core.common.exceptions import AsyncProcessError
 from actinia_core.models.response_models import (
     UnivarResultModel,
@@ -889,7 +889,7 @@ class AsyncEphemeralLandsatProcessingResource(ResourceBase):
         rdc.set_user_data((landsat_id, atcor_method, processing_method))
         # rdc.set_storage_model_to_gcs()
 
-        # RedisQueue approach
+        # KvdbQueue approach
         enqueue_job(self.job_timeout, start_job, rdc)
         # http_code, data = self.wait_until_finish(0.5)
         html_code, response_model = pickle.loads(self.response_data)
