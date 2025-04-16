@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "actinia-satellite-plugin"
-version = "0.2.0"
+version = "0.2.1"
 description = "An actinia-core plugin which adds efficient satellite data handling to actinia-core"
 readme = "README.md"
 authors = [
