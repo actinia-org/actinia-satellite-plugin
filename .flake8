@@ -3,6 +3,8 @@
 
 # F401 'module' imported but unused
 
+max-line-length = 79
+
 exclude = .git,.pycache,build,.eggs
 
 per-file-ignores =
