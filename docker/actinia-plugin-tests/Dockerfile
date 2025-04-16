@@ -28,9 +28,6 @@ RUN pip3 install iniconfig colorlog pytest pytest-cov
 COPY docker/actinia-plugin-tests/actinia-test.cfg /etc/default/actinia
 COPY docker/actinia-plugin-tests/actinia-test.cfg /etc/default/actinia_test
 
-COPY requirements.txt /src/requirements.txt
-RUN pip3 install -r /src/requirements.txt
-
 # TODO: Postgres for tests
 # using tests/data/poly.gpkg
 

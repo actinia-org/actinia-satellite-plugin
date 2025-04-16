@@ -28,8 +28,7 @@ of actinia will be extended with the endpoints of the plugins.
         git clone https://github.com/mundialis/actinia_satellite_plugin.git
 
         cd actinia_satellite_plugin
-        pip3 install -r requirements.txt
-        python3 setup.py install
+        pip3 install .
 
     ..
 

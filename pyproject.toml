@@ -1,3 +1,63 @@
+
 [build-system]
-requires = ["setuptools>=40.6.0", "wheel"]
+requires      = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "actinia-satellite-plugin"
+version = "0.2.0"
+description = "An actinia-core plugin which adds efficient satellite data handling to actinia-core"
+readme = "README.md"
+authors = [
+    { name = "Soeren Gebbert"},
+    { name = "Carmen Tawalika"},
+    { name = "Markus Neteler"},
+    { name = "Lina Krisztian"},
+]
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3",
+]
+requires-python = ">=3.8"
+keywords = [
+    "processing",
+    "earth observation",
+    "cloud-based processing",
+    "rest api",
+    "gis",
+    "grass gis",
+    "osgeo",
+    "satellite",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+
+[project.urls]
+Homepage = "https://github.com/mundialis/actinia-satellite-plugin"
+Tutorial = "https://mundialis.github.io/actinia_core"
+API_Docs = "https://redocly.github.io/redoc/?url=https://actinia.mundialis.de/latest/swagger.json"
+
+[tool.flake8]
+max-line-length = 79
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.*"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--cov actinia_satellite_plugin --cov-report term-missing --verbose --tb=line -x -s"
+testpaths = [
+    "tests",
+]
+markers = [
+    "dev: test current in development",
+    "unittest: completely independent test",
+    "integrationtest: integration test",
+]
