@@ -30,6 +30,9 @@ keywords = [
     "satellite",
 ]
 
+dependencies = [
+]
+
 [project.optional-dependencies]
 test = [
     "pytest",
