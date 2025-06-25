@@ -13,9 +13,8 @@ from actinia_core.models.response_models import (
     ProcessingResponseModel,
     ProcessingErrorResponseModel,
 )
-from actinia_core.processing.actinia_processing.ephemeral\
-    .persistent_processing import PersistentProcessing
-from actinia_core.rest.base.resource_base import ResourceBase
+from actinia_processing_lib.persistent_processing import PersistentProcessing
+from actinia_rest_lib.resource_base import ResourceBase
 from actinia_core.core.common.kvdb_interface import enqueue_job
 from actinia_core.core.common.google_satellite_bigquery_interface import (
     GoogleSatelliteBigQueryInterface,
@@ -26,7 +25,7 @@ from actinia_core.core.common.landsat_processing_library import (
     extract_sensor_id_from_scene_id,
     RASTER_SUFFIXES,
 )
-from actinia_core.core.common.exceptions import AsyncProcessError
+from actinia_processing_lib.exceptions import AsyncProcessError
 
 __license__ = "GPLv3"
 __author__ = "Sören Gebbert"

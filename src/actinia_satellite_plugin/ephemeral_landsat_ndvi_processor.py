@@ -8,11 +8,12 @@ from actinia_core.core.common.process_object import Process
 from actinia_core.core.common.app import auth
 from actinia_core.core.common.api_logger import log_api_call
 from flask_restful_swagger_2 import swagger
-from actinia_core.rest.base.resource_base import ResourceBase
-from actinia_core.processing.actinia_processing.ephemeral\
-    .ephemeral_processing_with_export import EphemeralProcessingWithExport
+from actinia_rest_lib.resource_base import ResourceBase
+from actinia_processing_lib.ephemeral_processing_with_export import (
+    EphemeralProcessingWithExport
+)
 from actinia_core.core.common.kvdb_interface import enqueue_job
-from actinia_core.core.common.exceptions import AsyncProcessError
+from actinia_processing_lib.exceptions import AsyncProcessError
 from actinia_core.models.response_models import (
     UnivarResultModel,
     ProcessingResponseModel,

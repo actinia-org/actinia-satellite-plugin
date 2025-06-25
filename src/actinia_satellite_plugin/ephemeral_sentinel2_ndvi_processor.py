@@ -5,11 +5,10 @@ import tempfile
 from copy import deepcopy
 from flask import jsonify, make_response
 from flask_restful_swagger_2 import swagger
-from actinia_core.processing.actinia_processing.ephemeral\
-    .ephemeral_processing_with_export import (
-        EphemeralProcessingWithExport,
-    )
-from actinia_core.rest.base.resource_base import ResourceBase
+from actinia_processing_lib.ephemeral_processing_with_export import (
+    EphemeralProcessingWithExport
+)
+from actinia_rest_lib.resource_base import ResourceBase
 from actinia_core.core.common.google_satellite_bigquery_interface import (
     GoogleSatelliteBigQueryInterface,
 )
@@ -18,7 +17,7 @@ from actinia_core.core.common.sentinel_processing_library import (
     Sentinel2Processing,
 )
 from actinia_core.core.common.process_object import Process
-from actinia_core.core.common.exceptions import AsyncProcessError
+from actinia_processing_lib.exceptions import AsyncProcessError
 from actinia_core.models.response_models import (
     UnivarResultModel,
     ProcessingResponseModel,

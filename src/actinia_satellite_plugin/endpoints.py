@@ -3,7 +3,8 @@
 """
 Actinia satellite plugin endpoint definitions
 """
-from actinia_core.endpoints import get_endpoint_class_name
+
+from flask_restful_swagger_2 import Resource
 
 from .satellite_query import LandsatQuery, Sentinel2Query
 from .ephemeral_landsat_ndvi_processor import (
@@ -26,6 +27,19 @@ __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"
 __email__ = "soerengebbert@googlemail.com"
+
+
+def get_endpoint_class_name(
+    endpoint_class: Resource,
+    projects_url_part: str = "projects",
+) -> str:
+    """Create the name for the given endpoint class."""
+    endpoint_class_name = endpoint_class.__name__.lower()
+    if projects_url_part != "projects":
+        name = f"{endpoint_class_name}_{projects_url_part}"
+    else:
+        name = endpoint_class_name
+    return name
 
 
 def create_project_endpoints(flask_api, projects_url_part="projects"):
