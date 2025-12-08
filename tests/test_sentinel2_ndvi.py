@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Test Sentinel-2 NDVI creation
+"""
+
 import unittest
 from pprint import pprint
 from flask.json import loads as json_load

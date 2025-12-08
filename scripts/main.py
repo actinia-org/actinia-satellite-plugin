@@ -1,6 +1,9 @@
 #!flask/bin/python
 # -*- coding: utf-8 -*-
-"""
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
 Actinia Core
 """
 

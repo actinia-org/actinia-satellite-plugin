@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Persistent Landsat time series creator
 """
-Asynchronous merging of several mapsets into a single one
-"""
+
 import pickle
 import os
 from flask import jsonify, make_response

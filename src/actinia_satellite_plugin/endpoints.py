@@ -1,7 +1,10 @@
 #!flask/bin/python
 # -*- coding: utf-8 -*-
-"""
-Actinia satellite plugin endpoint definitions
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+actinia satellite plugin endpoint definitions
 """
 
 from flask_restful_swagger_2 import Resource
