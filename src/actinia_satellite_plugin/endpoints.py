@@ -25,7 +25,7 @@ from .persistent_sentinel2_timeseries_creator import (
 )
 from .aws_sentinel2a_query import AWSSentinel2ADownloadLinkQuery
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"

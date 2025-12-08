@@ -17,7 +17,7 @@ except Exception:
     from test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Soeren Gebbert"
