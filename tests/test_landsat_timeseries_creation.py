@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Test Landsat time series creation
+"""
+
 import unittest
 from pprint import pprint
 from flask.json import loads as json_load
@@ -35,7 +42,7 @@ test_mapsets = ["A"]
 
 
 class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
-    """test the download and creation of sentinel2 time series in a new mapset
+    """test the download and creation of Landsat time series in a new mapset
 
     TODO: Implement error tests for wrong scene ids and atmospheric correction
           methods
