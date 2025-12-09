@@ -7,7 +7,7 @@
 #               mundialis GmbH & Co. KG, Bonn
 #               https://www.mundialis.de
 #
-# PURPOSE:      This script tests the kvdb (valkey) server
+# PURPOSE:      This script sets up a test environment including the kvdb (valkey) server
 #
 # SPDX-FileCopyrightText: (c) 2022 by mundialis GmbH & Co. KG
 #
