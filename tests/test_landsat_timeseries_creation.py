@@ -42,7 +42,7 @@ test_mapsets = ["A"]
 
 
 class AsyncLandsatTimeSeriesCreationTestCaseAdmin(ActiniaResourceTestCaseBase):
-    """test the download and creation of sentinel2 time series in a new mapset
+    """test the download and creation of Landsat time series in a new mapset
 
     TODO: Implement error tests for wrong scene ids and atmospheric correction
           methods

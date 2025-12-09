@@ -207,10 +207,9 @@ def start_job(*args):
 class LandsatTimeSeriesCreator(PersistentProcessing):
     """
     Create a space time raster dataset from all provided scene_ids for each
-    Sentinel2A band
-    in a new mapset.
+    Landsat band in a new mapset.
 
-    The Sentiel2A scenes are downloaded , imported and pre-processed before
+    The Landsat scenes are downloaded, imported and pre-processed before
     they are registered in the band specific space time datasets.
     """
 
@@ -306,7 +305,7 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
 
     def _import_scenes(self):
         """
-        Import all found Sentinel2 scenes with their bands and create the
+        Import all found Landsat scenes with their bands and create the
         space time raster datasets to register the maps in.
 
         Raises:
@@ -330,7 +329,7 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
 
             (
                 download_commands,
-                self.sentinel2_band_file_list,
+                self.landsat_band_file_list,
             ) = process_lib.get_download_process_list()
 
             # Download the Landsat scene if it is not in the download cache
@@ -441,7 +440,7 @@ class LandsatTimeSeriesCreator(PersistentProcessing):
 
         if self.target_mapset_exists is True:
             raise AsyncProcessError(
-                "Sentinel time series can only be create in a new mapset. "
+                "Landsat time series can only be create in a new mapset. "
                 "Mapset <%s> already exists." % self.target_mapset_name
             )
 
