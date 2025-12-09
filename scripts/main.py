@@ -1,6 +1,9 @@
 #!flask/bin/python
 # -*- coding: utf-8 -*-
-"""
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
 Actinia Core
 """
 
@@ -11,7 +14,7 @@ from actinia_core.core.common.config import global_config, DEFAULT_CONFIG_PATH
 from actinia_core.core.common.kvdb_interface import connect
 from actinia_core.core.common.process_queue import create_process_queue
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"

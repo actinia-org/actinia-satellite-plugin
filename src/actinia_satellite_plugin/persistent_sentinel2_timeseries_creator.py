@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Persistent Sentinel-2 time series creator
 """
-"""
+
 import pickle
 import os
 from flask import jsonify, make_response
@@ -23,7 +28,7 @@ from actinia_core.core.common.sentinel_processing_library import (
 )
 from actinia_processing_lib.exceptions import AsyncProcessError
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"

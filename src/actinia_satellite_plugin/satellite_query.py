@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
 This module is responsible to answer requests for file based resources.
 """
 
@@ -16,7 +19,7 @@ from actinia_core.core.common.app import auth
 from actinia_core.core.common.api_logger import log_api_call
 from actinia_core.models.response_models import SimpleResponseModel
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"

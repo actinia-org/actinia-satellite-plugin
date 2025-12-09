@@ -1,7 +1,10 @@
 #!flask/bin/python
 # -*- coding: utf-8 -*-
-"""
-Actinia satellite plugin endpoint definitions
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+actinia satellite plugin endpoint definitions
 """
 
 from flask_restful_swagger_2 import Resource
@@ -22,7 +25,7 @@ from .persistent_sentinel2_timeseries_creator import (
 )
 from .aws_sentinel2a_query import AWSSentinel2ADownloadLinkQuery
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"

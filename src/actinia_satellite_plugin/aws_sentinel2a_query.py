@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-"""
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+actinia AWS Sentinel-2 query
 """
 
 from actinia_core.core.common.config import global_config
@@ -15,7 +19,7 @@ from flask_restful_swagger_2 import swagger, Schema
 from copy import deepcopy
 
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"

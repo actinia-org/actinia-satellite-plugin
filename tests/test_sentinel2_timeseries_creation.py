@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Test Sentinel-2 time series creation
+"""
+
 import unittest
 from pprint import pprint
 from flask.json import loads as json_load
@@ -12,7 +19,7 @@ except Exception:
 from actinia_core.version import init_versions, G_VERSION
 
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Soeren Gebbert"

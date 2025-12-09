@@ -3,7 +3,7 @@
 
 SPDX-License-Identifier: GPL-3.0-or-later
 
-Asynchronous merging of several mapsets into a single one
+Persistent Landsat time series creator
 """
 
 import pickle
@@ -31,7 +31,7 @@ from actinia_core.core.common.landsat_processing_library import (
 )
 from actinia_processing_lib.exceptions import AsyncProcessError
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Sören Gebbert"

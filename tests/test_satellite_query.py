@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""SPDX-FileCopyrightText: (c) 2016 Sören Gebbert & mundialis GmbH & Co. KG.
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Test Landsat queries
+"""
+
 import unittest
 from pprint import pprint
 from flask.json import loads as json_load
@@ -9,7 +16,7 @@ except Exception:
     from test_resource_base import ActiniaResourceTestCaseBase, URL_PREFIX
 
 
-__license__ = "GPLv3"
+__license__ = "GPL-3.0-or-later"
 __author__ = "Sören Gebbert"
 __copyright__ = "Copyright 2016, Sören Gebbert"
 __maintainer__ = "Soeren Gebbert"
