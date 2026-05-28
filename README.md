@@ -1,7 +1,7 @@
 # Actinia Satellite Plugin
 
-In the near future, this project will be archived and no longer developed.
-All tasks can be conducted directly via processing endpoints.
+**In the near future, this project will be archived and no longer developed.
+All tasks can be conducted directly via processing endpoints.**
 
 
 This actinia plugin is designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes.
