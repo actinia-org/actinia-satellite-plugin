@@ -1,5 +1,9 @@
 # Actinia Satellite Plugin
 
+In the near future, this project will be archived and no longer developed.
+All tasks can be conducted directly via processing endpoints.
+
+
 This actinia plugin is designed for efficient satellite data handling, especially Landsat and Sentinel-2 scenes.
 It implements endpoints for on-the-fly NDVI computation and time series import for Landsat and Sentinel-2
 scenes in the actinia database.
